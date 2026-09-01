@@ -1,0 +1,15 @@
+[
+  {
+    "start": "00:48.000",
+    "end": "00:52.000",
+    "start_ms": 48000,
+    "end_ms": 52000,
+    "chunk_index": 0,
+    "text": "算力进入全面开花状态，从光、OCS、CPU 延伸到上游材料。",
+    "speaker": "Speaker 1",
+    "source": "sensevoice_sentence_info",
+    "precision": "sentence",
+    "index": 0,
+    "used_for_doubtful": true
+  }
+]

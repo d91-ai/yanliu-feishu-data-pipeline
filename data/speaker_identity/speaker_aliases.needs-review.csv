@@ -1,0 +1,4 @@
+candidate_id,aliases,observed_series,confidence,reason,required_confirmation
+cand_demo_001,小林|林老师,示例研究周会,medium,常见称谓可能对应多人,确认是否为同一位发言人
+cand_demo_002,主持人|发言人1,多系列,none,匿名编号仅在单场会议内有效,禁止跨会议自动归并
+cand_demo_003,赵老师|嘉宾赵,示例专家交流,medium,缺少稳定身份锚点,补充人工确认依据

@@ -1,0 +1,12 @@
+{
+  "artifact_type": "target_attribution_review",
+  "artifact": {
+    "segments_reviewed": 0,
+    "wrong_grouping": [],
+    "missing_positive_targets": [],
+    "incidental_targets_in_heading": [],
+    "negative_targets_in_heading": [],
+    "non_source_companies": [],
+    "recommended_revisions": []
+  }
+}

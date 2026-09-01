@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["identified_targets"],
+  "properties": {
+    "identified_targets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "target_name",
+          "stock_code",
+          "market",
+          "candidate_status",
+          "matched_alias",
+          "needs_alias_review",
+          "alias_review_reason",
+          "evidence",
+          "rationale"
+        ],
+        "properties": {
+          "target_name": {"type": "string"},
+          "stock_code": {"type": "string"},
+          "market": {"type": "string", "enum": ["A股", "港股", "美股", "其他", "待确认"]},
+          "candidate_status": {
+            "type": "string",
+            "enum": ["confirmed", "rejected_context_only", "ambiguous", "needs_alias_review"]
+          },
+          "matched_alias": {"type": "string"},
+          "needs_alias_review": {"type": "boolean"},
+          "alias_review_reason": {"type": "string"},
+          "evidence": {"type": "string"},
+          "rationale": {"type": "string"}
+        }
+      }
+    }
+  }
+}

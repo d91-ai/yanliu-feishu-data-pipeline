@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>org.example.researchpipeline.meeting-skill-repository-tracker</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/python3</string>
+    <string>/Users/CHANGE_ME/services/feishu-meeting-pipeline-worker/track_skill_repositories.py</string>
+    <string>--config</string>
+    <string>/Users/CHANGE_ME/services/feishu-meeting-pipeline-worker/skill-repositories.v1.json</string>
+    <string>--mirror-root</string>
+    <string>/Users/CHANGE_ME/services/feishu-meeting-pipeline-worker/data/skill-mirrors</string>
+    <string>--status-output</string>
+    <string>/Users/CHANGE_ME/services/feishu-meeting-pipeline-worker/data/skill-repository-status.json</string>
+    <string>--apply</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>/Users/CHANGE_ME/services/feishu-meeting-pipeline-worker</string>
+  <key>StartInterval</key>
+  <integer>21600</integer>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>StandardOutPath</key>
+  <string>/Users/CHANGE_ME/services/feishu-meeting-pipeline-worker/data/skill-tracker.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/CHANGE_ME/services/feishu-meeting-pipeline-worker/data/skill-tracker.err.log</string>
+</dict>
+</plist>

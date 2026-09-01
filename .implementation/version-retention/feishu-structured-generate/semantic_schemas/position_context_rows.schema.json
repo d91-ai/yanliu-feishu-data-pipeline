@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["position_mentions"],
+  "properties": {
+    "position_mentions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "presenter",
+          "target_name",
+          "stock_code",
+          "position_context",
+          "position_evidence"
+        ],
+        "properties": {
+          "presenter": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "stock_code": {
+            "type": "string"
+          },
+          "position_context": {
+            "type": "string",
+            "pattern": "^(持有(?:（[^（）；]+）)?(?:；(?:计划增持|计划减持|计划卖出|暂不操作))?|未持有(?:；(?:计划买入|暂不操作))?|信息不足；计划买入)$"
+          },
+          "position_evidence": {
+            "type": "string",
+            "maxLength": 300
+          }
+        }
+      }
+    }
+  }
+}

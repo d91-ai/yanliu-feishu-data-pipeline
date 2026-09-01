@@ -1,0 +1,16 @@
+{
+  "tables": {
+    "REPLACE_WITH_SOURCE_TABLE_ID": {
+      "enabled": true,
+      "enforce": true,
+      "root_folder_token": "",
+      "category": "会议纪要"
+    },
+    "REPLACE_WITH_STRUCTURED_TABLE_ID": {
+      "enabled": true,
+      "enforce": true,
+      "root_folder_token": "",
+      "category": "结构化表格"
+    }
+  }
+}

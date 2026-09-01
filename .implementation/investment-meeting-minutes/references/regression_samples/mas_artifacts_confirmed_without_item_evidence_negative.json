@@ -1,0 +1,15 @@
+{
+  "artifacts": {
+    "entity_verification_report": {
+      "items": ["示例股份", "示例转债"],
+      "local_candidate_paths": ["query_symbol_candidates.py"],
+      "external_evidence_paths": ["exchange_disclosure"],
+      "confirmed_item_evidence_paths": {
+        "示例股份(999999.SZ)": ["exchange_disclosure"]
+      },
+      "confirmed_items": ["示例股份(999999.SZ)", "示例转债(123456.SZ)"],
+      "unresolved_items": [],
+      "conflicts": []
+    }
+  }
+}

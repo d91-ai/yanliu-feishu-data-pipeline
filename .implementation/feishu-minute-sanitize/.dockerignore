@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+secrets/
+data/
+tests/
+__pycache__/
+*.py[cod]
+.git/
+.DS_Store

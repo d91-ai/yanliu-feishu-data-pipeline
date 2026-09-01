@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["claim_units"],
+  "properties": {
+    "claim_units": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["presenter", "source_quotes", "direction", "time_horizon", "conditions", "targets"],
+        "properties": {
+          "presenter": {"type": "string", "minLength": 1},
+          "source_quotes": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string", "minLength": 1}
+          },
+          "direction": {
+            "type": "string",
+            "enum": ["看多", "看空", "关注", "中性", "信息不足"]
+          },
+          "time_horizon": {
+            "type": "string",
+            "enum": ["短期", "中期", "长期", "未说明"]
+          },
+          "conditions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["text", "types"],
+              "properties": {
+                "text": {"type": "string", "minLength": 1},
+                "types": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "未分类",
+                      "价格/估值",
+                      "业绩/基本面",
+                      "产业供需/价格",
+                      "产品/技术",
+                      "政策/事件",
+                      "市场/流动性",
+                      "资金/筹码",
+                      "交易/仓位"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "targets": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["target_name", "market", "position"],
+              "properties": {
+                "target_name": {"type": "string", "minLength": 1},
+                "market": {"type": "string", "enum": ["A股", "港股", "美股", "其他"]},
+                "position": {
+                  "anyOf": [
+                    {"type": "null"},
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": ["state", "detail", "plan"],
+                      "properties": {
+                        "state": {"type": "string", "enum": ["持有", "未持有", "信息不足"]},
+                        "detail": {"type": "string"},
+                        "plan": {
+                          "type": "string",
+                          "enum": ["无", "计划买入", "计划增持", "计划减持", "计划卖出", "暂不操作"]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

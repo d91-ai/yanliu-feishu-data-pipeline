@@ -1,0 +1,65 @@
+.planning/
+outputs/
+.tmp/
+meeting-minutes-runs/
+.DS_Store
+**/.DS_Store
+
+# Authentication artifacts and local runtime state must never be staged.
+feishu-auth-qrcode*.png
+feishu-*-auth-qrcode*.png
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.*.example
+**/.field-bindings*.json
+!**/.field-bindings*.example.json
+# Atomic/staging writers use private dot-prefixed temporary files.  This also
+# covers the `..env.<random>.tmp` form produced when the target is `.env`.
+**/.*.tmp
+**/*.log
+**/*.pid
+**/semantic-jobs/
+**/.semantic-jobs/
+**/event-spool/
+**/router-event-spool/
+**/structured_outputs/
+**/state/
+**/record-locks/
+**/upload-operation-locks/
+**/data/folder_registry*.json
+**/data/folder_registry*.json.*
+**/data/structured_folder_registry.json
+**/data/structured_folder_registry.json.*
+**/data/*.lock
+**/snapshots/
+**/backups/
+.local-backups/
+**/pilot/
+**/*.before
+
+server/.env
+server/*.log
+server/*.pid
+server/backups/
+server/data/
+server/secrets/
+**/.*.pending.*.token
+__pycache__/
+*.pyc
+
+# Private production bindings and host-local deployment files. Keep reusable
+# templates in Git; keep actual Base/Drive/Workflow IDs and absolute paths local.
+.implementation/meeting-pipeline-ops/cutover_config/production-unified-base.v1.json
+.implementation/meeting-pipeline-worker/production-assets.v1.json
+.implementation/version-retention/feishu-structured-generate/org.example.researchpipeline.feishu-structured-semantic-worker.plist
+launchd/org.example.researchpipeline.local-vault-mirror-pull.plist
+sync/local-vault-mirror/pull-from-feishu.sh
+tools/migrate_meeting_uid_and_structured_format.py
+
+# Deployment-specific evidence and private master data stay outside the public
+# source tree. Reusable synthetic fixtures and templates remain tracked.
+private/
+deployment-evidence/
+data/speaker_identity/private/
+**/data/security_master.local.csv

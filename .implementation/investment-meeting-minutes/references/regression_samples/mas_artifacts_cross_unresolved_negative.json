@@ -1,0 +1,14 @@
+{
+  "artifacts": {
+    "entity_verification_report": {
+      "items": ["示例客户"],
+      "local_candidate_paths": [],
+      "external_evidence_paths": [],
+      "confirmed_item_evidence_paths": {},
+      "confirmed_items": [],
+      "unresolved_items": ["示例客户"],
+      "conflicts": []
+    },
+    "doubtful_items": []
+  }
+}

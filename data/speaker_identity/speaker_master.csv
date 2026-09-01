@@ -1,0 +1,6 @@
+presenter_id,canonical_name,aliases,series_scope,status,confidence,evidence_refs,notes
+spk_demo_001,林晓（主持人）,林晓|林老师,示例研究周会,confirmed,high,synthetic_fixture,公开仓库合成示例
+spk_demo_002,陈宁（研究员）,陈宁|陈老师,示例研究周会,confirmed,high,synthetic_fixture,公开仓库合成示例
+spk_demo_003,赵青（嘉宾）,赵青|赵老师,示例专家交流,confirmed,high,synthetic_fixture,公开仓库合成示例
+spk_demo_004,周言（研究员）,周言|周老师,示例行业复盘,confirmed,high,synthetic_fixture,公开仓库合成示例
+spk_demo_005,孙禾（嘉宾）,孙禾|孙老师,示例路演系列,confirmed,high,synthetic_fixture,公开仓库合成示例

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "base_token": "replace_with_your_base_app_token",
+  "table_id": "replace_with_your_table_id",
+  "fields": {
+    "会议ID": "fld_example_meeting_id",
+    "会议名": "fld_example_meeting_name",
+    "会议日期": "fld_example_meeting_date",
+    "会议系列": "fld_example_meeting_series",
+    "会议类型": "fld_example_meeting_type",
+    "数据版本": "fld_example_data_version",
+    "会议纪要上传附件": "fld_example_upload_attachment",
+    "会议纪要MD": "fld_example_minutes_md",
+    "会议纪要审核前MD": "fld_example_minutes_before_review",
+    "会议纪要审核后MD": "fld_example_minutes_after_review",
+    "源纪要审核": "fld_example_minutes_review",
+    "行业与市场观点MD": "fld_example_industry_md",
+    "行业与市场观点审核前MD": "fld_example_industry_before_review",
+    "行业与市场观点审核后MD": "fld_example_industry_after_review",
+    "行业与市场观点JSON": "fld_example_industry_json",
+    "行业与市场观点审核": "fld_example_industry_review",
+    "标的观点MD": "fld_example_structured_md",
+    "标的观点审核前MD": "fld_example_structured_before_review",
+    "标的观点审核后MD": "fld_example_structured_after_review",
+    "标的观点JSON": "fld_example_structured_json",
+    "标的观点审核": "fld_example_structured_review",
+    "脱敏会议纪要MD": "fld_example_sanitized_minutes_md"
+  }
+}

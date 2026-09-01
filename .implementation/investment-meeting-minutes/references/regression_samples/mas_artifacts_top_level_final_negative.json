@@ -1,0 +1,12 @@
+{
+  "artifact_type": "fidelity_review",
+  "artifact": {
+    "paragraphs_reviewed": 1,
+    "source_mapping_failures": [],
+    "summary_compression_findings": [],
+    "pronoun_rewrite_findings": [],
+    "omission_findings": [],
+    "recommended_revisions": []
+  },
+  "final_markdown": "# forbidden"
+}

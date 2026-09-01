@@ -1,0 +1,13 @@
+{
+  "artifacts": {
+    "source_manifest": {
+      "source_mode": "document_only",
+      "materials": [
+        {"kind": "document", "name": "synthetic-clean-transcript.md"}
+      ],
+      "archive_allowed": true,
+      "archive_status": "skipped_for_fixture",
+      "skipped_reason": "synthetic_regression"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>org.example.researchpipeline.sensevoice-transcription-server</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/zsh</string>
+    <string>-lc</string>
+    <string>exec "${HOME}/.codex/skills/investment-meeting-minutes/scripts/start_sensevoice_transcription_server.sh"</string>
+  </array>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <key>StandardOutPath</key>
+  <string>/tmp/sensevoice-transcription-server.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/sensevoice-transcription-server.err.log</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PYTHONUTF8</key>
+    <string>1</string>
+    <key>PYTHONIOENCODING</key>
+    <string>utf-8</string>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    <key>DYLD_FALLBACK_LIBRARY_PATH</key>
+    <string>/opt/homebrew/opt/little-cms2/lib:/opt/homebrew/lib:/usr/local/opt/little-cms2/lib:/usr/local/lib</string>
+    <key>DYLD_LIBRARY_PATH</key>
+    <string>/opt/homebrew/opt/little-cms2/lib:/opt/homebrew/lib:/usr/local/opt/little-cms2/lib:/usr/local/lib</string>
+  </dict>
+</dict>
+</plist>

@@ -1,0 +1,33 @@
+{
+  "artifacts": {
+    "entity_verification_report": {
+      "items": [
+        "某某科技"
+      ],
+      "local_candidate_paths": [
+        "query_symbol_candidates.py"
+      ],
+      "external_evidence_paths": [
+        "exchange_disclosure"
+      ],
+      "confirmed_item_evidence_paths": {},
+      "confirmed_items": [],
+      "unresolved_items": [
+        "某某科技"
+      ],
+      "conflicts": []
+    },
+    "doubtful_items": [
+      {
+        "原始表述": "某某科技",
+        "存疑类型": "公司或证券标的",
+        "当前判断": "待人工确认",
+        "候选项": "候选科技(999999.SZ)",
+        "是否需要 sidecar": true,
+        "上下文依据": "发言人1在科技板块段落中提及",
+        "检索/证据路径": "本地候选加交易所披露仍无法唯一确认",
+        "最终处理": "正文加粗标注并入存疑表"
+      }
+    ]
+  }
+}

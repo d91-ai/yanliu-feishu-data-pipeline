@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema_version": 1,
+  "table_name": "会议数据库",
+  "fields": [
+    {"name": "会议ID", "base_type": "text", "required": true, "immutable": true},
+    {"name": "会议日期", "base_type": "date", "required": true},
+    {"name": "会议系列", "base_type": "single_select", "required": true, "options_source": "operator_confirmed"},
+    {"name": "会议类型", "base_type": "single_select", "required": true, "options_source": "operator_confirmed"},
+    {"name": "数据版本", "base_type": "number", "required": true, "integer": true, "minimum": 1},
+    {"name": "会议纪要MD", "base_type": "url", "required": true},
+    {"name": "会议纪要审核前MD", "base_type": "url", "required": true},
+    {"name": "会议纪要审核后MD", "base_type": "url", "required": false},
+    {"name": "源纪要审核", "base_type": "single_select", "required": true, "options": ["未审核", "已审核", "需重审"]},
+    {"name": "行业与市场观点MD", "base_type": "url", "required": false},
+    {"name": "行业与市场观点审核前MD", "base_type": "url", "required": false},
+    {"name": "行业与市场观点审核后MD", "base_type": "url", "required": false},
+    {"name": "行业与市场观点JSON", "base_type": "url", "required": false},
+    {"name": "行业与市场观点审核", "base_type": "single_select", "required": true, "options": ["未审核", "已审核", "需重审"]},
+    {"name": "标的观点MD", "base_type": "url", "required": false},
+    {"name": "标的观点审核前MD", "base_type": "url", "required": false},
+    {"name": "标的观点审核后MD", "base_type": "url", "required": false},
+    {"name": "标的观点JSON", "base_type": "url", "required": false},
+    {"name": "标的观点审核", "base_type": "single_select", "required": true, "options": ["未审核", "已审核", "需重审"]},
+    {"name": "脱敏会议纪要MD", "base_type": "url", "required": false, "generation_enabled": false}
+  ],
+  "views": [
+    {"name": "会议总览", "fields": ["会议ID", "会议日期", "会议系列", "会议类型", "数据版本", "源纪要审核", "行业与市场观点审核", "标的观点审核"]},
+    {"name": "源纪要审核", "fields": ["会议ID", "会议日期", "会议系列", "数据版本", "会议纪要MD", "会议纪要审核前MD", "会议纪要审核后MD", "源纪要审核"]},
+    {"name": "行业与市场观点审核", "fields": ["会议ID", "会议日期", "会议系列", "数据版本", "行业与市场观点MD", "行业与市场观点审核前MD", "行业与市场观点审核后MD", "行业与市场观点JSON", "行业与市场观点审核"]},
+    {"name": "标的观点审核", "fields": ["会议ID", "会议日期", "会议系列", "数据版本", "标的观点MD", "标的观点审核前MD", "标的观点审核后MD", "标的观点JSON", "标的观点审核"]}
+  ]
+}

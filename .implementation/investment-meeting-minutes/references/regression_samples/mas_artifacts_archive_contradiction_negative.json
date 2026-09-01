@@ -1,0 +1,10 @@
+{
+  "artifact_type": "source_manifest",
+  "artifact": {
+    "source_mode": "document_only",
+    "materials": [{"kind": "document", "name": "synthetic.md"}],
+    "archive_allowed": false,
+    "archive_status": "completed",
+    "skipped_reason": ""
+  }
+}

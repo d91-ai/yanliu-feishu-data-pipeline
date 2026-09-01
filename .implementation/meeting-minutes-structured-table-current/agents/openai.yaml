@@ -1,0 +1,4 @@
+interface:
+  display_name: "投资会议结构化观点"
+  short_description: "生成可编辑观点 Markdown 和结构化 JSON"
+  default_prompt: "使用 $meeting-minutes-structured-table，从完整会议纪要按语义提取可追溯证券观点，使用数据管线提供的会议ID生成 Markdown，并从当前结构化 Markdown 重新生成 JSON。"

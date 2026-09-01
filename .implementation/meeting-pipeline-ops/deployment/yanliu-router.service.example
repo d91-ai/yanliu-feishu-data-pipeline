@@ -1,0 +1,16 @@
+[Unit]
+Description=Yanliu Feishu event Router
+After=network-online.target docker.service
+Wants=network-online.target
+Requires=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/ABSOLUTE_REPO_PATH/.implementation/version-retention/feishu-drive-to-bitable
+ExecStart=/usr/bin/docker compose --env-file /ABSOLUTE_RUNTIME_PATH/router/.env.router up -d --build
+ExecStop=/usr/bin/docker compose --env-file /ABSOLUTE_RUNTIME_PATH/router/.env.router stop
+TimeoutStartSec=180
+
+[Install]
+WantedBy=multi-user.target

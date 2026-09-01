@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "base_token": "example_base_token",
+  "source_table_id": "tbl_example_source",
+  "current_table_name": "非结构化数据库",
+  "target_table_name": "会议数据库",
+  "snapshot_tables": {
+    "source": {"table_id": "tbl_example_source", "record_count": 1},
+    "structured": {"table_id": "tbl_example_structured", "record_count": 0},
+    "sanitized": {"table_id": "tbl_example_sanitized", "record_count": 0},
+    "official": {"table_id": "tbl_example_official", "record_count": 0}
+  },
+  "reused_fields": [
+    {"target_name": "会议ID", "field_id": "fld_example_meeting_id", "current_name": "文件名", "definition": {"type": "text", "name": "会议ID", "style": {"type": "plain"}}},
+    {"target_name": "会议日期", "field_id": "fld_example_date", "current_name": "会议日期", "definition": {"type": "datetime", "name": "会议日期", "style": {"format": "yyyy/MM/dd"}}},
+    {"target_name": "会议系列", "field_id": "fld_example_series", "current_name": "会议系列", "definition": {"type": "select", "name": "会议系列", "multiple": false, "options": [{"name": "示例研究周会"}, {"name": "其他"}]}},
+    {"target_name": "会议类型", "field_id": "fld_example_type", "current_name": "会议类型", "definition": {"type": "select", "name": "会议类型", "multiple": false, "options": [{"name": "多人复盘会"}]}},
+    {"target_name": "会议纪要MD", "field_id": "fld_example_source_md", "current_name": "文档链接", "definition": {"type": "text", "name": "会议纪要MD", "style": {"type": "url"}}},
+    {"target_name": "会议纪要审核前MD", "field_id": "fld_example_source_baseline", "current_name": "审核前版本链接", "definition": {"type": "text", "name": "会议纪要审核前MD", "style": {"type": "url"}}},
+    {"target_name": "会议纪要审核后MD", "field_id": "fld_example_source_reviewed", "current_name": "归档链接", "definition": {"type": "text", "name": "会议纪要审核后MD", "style": {"type": "url"}}},
+    {"target_name": "脱敏会议纪要MD", "field_id": "fld_example_sanitized", "current_name": "脱敏MD链接", "definition": {"type": "text", "name": "脱敏会议纪要MD", "style": {"type": "url"}}}
+  ],
+  "new_fields": [
+    {"type": "number", "name": "数据版本", "style": {"type": "plain", "precision": 0, "percentage": false, "thousands_separator": false}},
+    {"type": "select", "name": "源纪要审核", "multiple": false, "options": [{"name": "未审核"}, {"name": "已审核"}, {"name": "需重审"}]},
+    {"type": "text", "name": "行业与市场观点MD", "style": {"type": "url"}},
+    {"type": "text", "name": "行业与市场观点审核前MD", "style": {"type": "url"}},
+    {"type": "text", "name": "行业与市场观点审核后MD", "style": {"type": "url"}},
+    {"type": "text", "name": "行业与市场观点JSON", "style": {"type": "url"}},
+    {"type": "select", "name": "行业与市场观点审核", "multiple": false, "options": [{"name": "未审核"}, {"name": "已审核"}, {"name": "需重审"}]},
+    {"type": "text", "name": "标的观点MD", "style": {"type": "url"}},
+    {"type": "text", "name": "标的观点审核前MD", "style": {"type": "url"}},
+    {"type": "text", "name": "标的观点审核后MD", "style": {"type": "url"}},
+    {"type": "text", "name": "标的观点JSON", "style": {"type": "url"}},
+    {"type": "select", "name": "标的观点审核", "multiple": false, "options": [{"name": "未审核"}, {"name": "已审核"}, {"name": "需重审"}]}
+  ],
+  "attachment_field": {"type": "attachment", "name": "会议纪要上传附件"},
+  "views": [
+    {"name": "会议总览", "type": "grid", "visible_fields": ["会议ID", "会议日期", "会议系列", "会议类型", "数据版本", "源纪要审核", "行业与市场观点审核", "标的观点审核"]},
+    {"name": "源纪要审核", "type": "grid", "visible_fields": ["会议ID", "会议日期", "会议系列", "数据版本", "会议纪要MD", "会议纪要审核前MD", "会议纪要审核后MD", "源纪要审核"]},
+    {"name": "行业与市场观点审核", "type": "grid", "visible_fields": ["会议ID", "会议日期", "会议系列", "数据版本", "行业与市场观点MD", "行业与市场观点审核前MD", "行业与市场观点审核后MD", "行业与市场观点JSON", "行业与市场观点审核"]},
+    {"name": "标的观点审核", "type": "grid", "visible_fields": ["会议ID", "会议日期", "会议系列", "数据版本", "标的观点MD", "标的观点审核前MD", "标的观点审核后MD", "标的观点JSON", "标的观点审核"]}
+  ],
+  "old_workflows": {
+    "wkf_example_01": "enabled",
+    "wkf_example_02": "enabled",
+    "wkf_example_03": "enabled",
+    "wkf_example_04": "enabled",
+    "wkf_example_05": "enabled",
+    "wkf_example_06": "enabled",
+    "wkf_example_07": "disabled",
+    "wkf_example_08": "disabled",
+    "wkf_example_09": "disabled"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "artifact_type": "entity_verification_report",
+  "artifact": {
+    "items": ["未归类高风险客户"],
+    "local_candidate_paths": [],
+    "external_evidence_paths": [],
+    "confirmed_item_evidence_paths": {},
+    "confirmed_items": [],
+    "unresolved_items": [],
+    "conflicts": []
+  }
+}

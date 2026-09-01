@@ -1,0 +1,42 @@
+{
+  "artifacts": {
+    "source_manifest": {
+      "source_mode": "document_only",
+      "materials": [{"kind": "document", "name": "clean_company_call.md"}],
+      "archive_allowed": true,
+      "archive_status": "skipped_for_fixture",
+      "skipped_reason": "synthetic_regression"
+    },
+    "entity_verification_report": {
+      "items": [],
+      "local_candidate_paths": [],
+      "external_evidence_paths": [],
+      "confirmed_item_evidence_paths": {},
+      "confirmed_items": [],
+      "unresolved_items": [],
+      "conflicts": []
+    },
+    "doubtful_items": [],
+    "fidelity_review": {
+      "paragraphs_reviewed": 2,
+      "source_mapping_failures": [],
+      "summary_compression_findings": [],
+      "pronoun_rewrite_findings": [],
+      "omission_findings": [],
+      "recommended_revisions": []
+    },
+    "export_manifest": {
+      "markdown_path": "synthetic.md",
+      "markdown_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "verification_sidecar_path": "",
+      "validators_run": [
+        {"name": "validate_utf8_text.py", "ok": true},
+        {"name": "validate_meeting_minutes_contract.py", "ok": true}
+      ],
+      "regression_result": {"name": "run_meeting_minutes_regression.py", "case_count": 1, "ok": true},
+      "export_status": "passed",
+      "known_unverified_parts": [],
+      "main_actions_verified": false
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "artifact_type": "entity_verification_report",
+  "artifact": {
+    "items": ["示例公司"],
+    "local_candidate_paths": [],
+    "external_evidence_paths": [
+      "https://example.com/evidence?auth_token=secret",
+      "https://example.com/evidence?session_token=secret",
+      "https://example.com/evidence?secret_key=secret",
+      "https://example.com/evidence?X-Goog-Signature=secret",
+      "https://example.com/evidence?AWSAccessKeyId=secret",
+      "https://example.com/evidence?jwt=secret",
+      "https://example.com/evidence?authToken=secret",
+      "https://example.com/evidence?accessToken=secret",
+      "https://example.com/evidence?sessionToken=secret",
+      "https://example.com/evidence?secretKey=secret",
+      "https://example.com/evidence?clientSecret=secret",
+      "https://example.com/evidence?privateKey=secret",
+      "https://example.com/evidence?xGoogSignature=secret",
+      "https://2130706433/evidence",
+      "https://127.1/evidence",
+      "https://0x7f000001/evidence"
+    ],
+    "confirmed_item_evidence_paths": {
+      "示例公司": [
+        "https://example.com/evidence?auth_token=secret",
+        "https://example.com/evidence?session_token=secret",
+        "https://example.com/evidence?secret_key=secret",
+        "https://example.com/evidence?X-Goog-Signature=secret",
+        "https://example.com/evidence?AWSAccessKeyId=secret",
+        "https://example.com/evidence?jwt=secret",
+        "https://example.com/evidence?authToken=secret",
+        "https://example.com/evidence?accessToken=secret",
+        "https://example.com/evidence?sessionToken=secret",
+        "https://example.com/evidence?secretKey=secret",
+        "https://example.com/evidence?clientSecret=secret",
+        "https://example.com/evidence?privateKey=secret",
+        "https://example.com/evidence?xGoogSignature=secret",
+        "https://2130706433/evidence",
+        "https://127.1/evidence",
+        "https://0x7f000001/evidence"
+      ]
+    },
+    "confirmed_items": ["示例公司"],
+    "unresolved_items": [],
+    "conflicts": []
+  }
+}

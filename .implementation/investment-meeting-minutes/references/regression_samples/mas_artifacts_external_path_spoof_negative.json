@@ -1,0 +1,15 @@
+{
+  "artifacts": {
+    "entity_verification_report": {
+      "items": ["示例股份(999999.SZ)"],
+      "local_candidate_paths": ["query_symbol_candidates.py"],
+      "external_evidence_paths": ["local-cache/company.json.bak"],
+      "confirmed_item_evidence_paths": {
+        "示例股份(999999.SZ)": ["local-cache/company.json.bak"]
+      },
+      "confirmed_items": ["示例股份(999999.SZ)"],
+      "unresolved_items": [],
+      "conflicts": []
+    }
+  }
+}

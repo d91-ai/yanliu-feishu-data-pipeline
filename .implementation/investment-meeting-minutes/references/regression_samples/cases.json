@@ -1,0 +1,1544 @@
+{
+  "cases": [
+    {
+      "name": "输出合约标题逃逸与时间戳精度文档检查",
+      "mode": "reference_output_contract",
+      "check": "text_contains",
+      "file": "../output_contract.md",
+      "required_terms": ["契约外逃逸标题", "sentence/phrase 级 anchor", "segment/chunk/minute 级范围", "质量较高的一侧作为正文主源", "先写板块行", "Validator 只检查结构性错误", "只有名称和代码均已确认"],
+      "forbidden_terms": ["可在正文或标题中以加粗存疑形式"]
+    },
+    {
+      "name": "未确认 ticker 不得进入标题规则检查",
+      "mode": "reference_unconfirmed_ticker_heading_boundary",
+      "check": "text_contains",
+      "file": "../verification_policy.md",
+      "required_terms": ["只能在正文中加粗保留候选名称和代码", "不得进入标题或标的行"],
+      "forbidden_terms": ["可在正文或标题中以加粗存疑形式"]
+    },
+    {
+      "name": "MAS 编排契约目标模式检查",
+      "mode": "reference_mas_orchestration_goal",
+      "check": "text_contains",
+      "file": "../mas_orchestration_contract.md",
+      "required_terms": ["提高端到端自动化效率", "减少人工常规参与", "提升最终纪要质量", "最终 Markdown 只由主流程生成或修改", "不引入 LangGraph"]
+    },
+    {
+      "name": "MAS artifact 和决策规则检查",
+      "mode": "reference_mas_orchestration_artifacts",
+      "check": "text_contains",
+      "file": "../mas_orchestration_contract.md",
+      "required_terms": ["transcript_audit", "source_reconciliation", "entity_verification_report", "target_attribution_review", "fidelity_review", "export_manifest", "自动通过", "自动标存疑", "请求人工"]
+    },
+    {
+      "name": "MAS 入口同步检查",
+      "mode": "reference_mas_entry_points",
+      "check": "text_contains",
+      "file": "../../SKILL.md",
+      "required_terms": ["references/mas_orchestration_contract.md", "MAS boundary", "Specialist agents", "transcript_audit", "automatic pass"]
+    },
+    {
+      "name": "MAS artifact bundle 正例",
+      "mode": "mas_artifacts_valid",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_valid.json",
+      "require_artifacts": ["source_manifest", "transcript_audit", "source_reconciliation", "entity_verification_report", "doubtful_items", "target_attribution_review", "fidelity_review", "export_manifest"]
+    },
+    {
+      "name": "MAS artifact 缺字段负例",
+      "mode": "mas_artifacts_missing_required_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_missing_required_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["source_reconciliation 缺少字段: primary_body_source"]
+    },
+    {
+      "name": "MAS artifact 混入终稿负例",
+      "mode": "mas_artifacts_final_markdown_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_final_markdown_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["final_markdown 不得包含终稿字段"]
+    },
+    {
+      "name": "MAS artifact 顶层混入终稿负例",
+      "mode": "mas_artifacts_top_level_final_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_top_level_final_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["payload.final_markdown 不得包含终稿字段"]
+    },
+    {
+      "name": "MAS review 零审查范围负例",
+      "mode": "mas_artifacts_zero_scope_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_zero_scope_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["segments_reviewed 必须是正整数"]
+    },
+    {
+      "name": "MAS source manifest 归档状态矛盾负例",
+      "mode": "mas_artifacts_archive_contradiction_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_archive_contradiction_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["archive_allowed=false 时不得报告 archive_status=completed"]
+    },
+    {
+      "name": "MAS unresolved 与 doubtful_items 不一致负例",
+      "mode": "mas_artifacts_cross_unresolved_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_cross_unresolved_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["unresolved_items 缺少对应 doubtful_items"]
+    },
+    {
+      "name": "MAS doubtful_items 空主键负例",
+      "mode": "mas_artifacts_empty_doubtful_key_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_empty_doubtful_key_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["原始表述 不得为空"]
+    },
+    {
+      "name": "MAS export 自报未知 validator 负例",
+      "mode": "mas_artifacts_fake_validator_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_fake_validator_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["validators_run 包含未知 validator"]
+    },
+    {
+      "name": "MAS artifact 决策字段类型负例",
+      "mode": "mas_artifacts_manual_review_string_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_manual_review_string_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["source_reconciliation.manual_review_required 必须是 boolean"]
+    },
+    {
+      "name": "MAS source manifest 空材料负例",
+      "mode": "mas_artifacts_empty_source_materials_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_empty_source_materials_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["source_manifest.materials 不得为空"]
+    },
+    {
+      "name": "MAS transcript continue 空审查负例",
+      "mode": "mas_artifacts_empty_transcript_continue_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_empty_transcript_continue_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["transcript_audit.asr_primary 不得为空", "transcript_audit.timestamp_index_status 不得为空"]
+    },
+    {
+      "name": "MAS artifact confirmed 缺外部证据负例",
+      "mode": "mas_artifacts_confirmed_without_external_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_confirmed_without_external_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["confirmed_items 非空时必须提供 external_evidence_paths"]
+    },
+    {
+      "name": "MAS artifact confirmed 缺逐条证据映射负例",
+      "mode": "mas_artifacts_confirmed_without_item_evidence_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_confirmed_without_item_evidence_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["confirmed item 缺少逐条外部证据"]
+    },
+    {
+      "name": "MAS artifact confirmed 逐条证据引用本地候选负例",
+      "mode": "mas_artifacts_confirmed_item_local_evidence_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_confirmed_item_local_evidence_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["逐条证据必须来自 external_evidence_paths"]
+    },
+    {
+      "name": "MAS artifact 自动主源为空负例",
+      "mode": "mas_artifacts_source_empty_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_source_empty_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["自动继续时 primary_body_source 不得为空", "自动继续时 primary_source_reason 不得为空"]
+    },
+    {
+      "name": "MAS artifact 本地证据冒充外部证据负例",
+      "mode": "mas_artifacts_external_local_overlap_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_external_local_overlap_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["local_candidate_paths 与 external_evidence_paths 不得复用同一证据"]
+    },
+    {
+      "name": "MAS artifact 外部证据路径伪造负例",
+      "mode": "mas_artifacts_external_path_spoof_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_external_path_spoof_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["external_evidence_paths 必须是公开 HTTPS URL 或公开 source ID"]
+    },
+    {
+      "name": "MAS artifact 私网凭据 URL 冒充公开证据负例",
+      "mode": "mas_artifacts_private_url_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_private_url_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["external_evidence_paths 必须是公开 HTTPS URL 或公开 source ID"]
+    },
+    {
+      "name": "MAS artifact HTTPS 凭据参数负例",
+      "mode": "mas_artifacts_sensitive_url_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_sensitive_url_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["external_evidence_paths 必须是公开 HTTPS URL 或公开 source ID"]
+    },
+    {
+      "name": "MAS artifact 飞书协作链接冒充公开证据负例",
+      "mode": "mas_artifacts_feishu_url_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_feishu_url_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["external_evidence_paths 必须是公开 HTTPS URL 或公开 source ID"]
+    },
+    {
+      "name": "MAS artifact 实体未归类负例",
+      "mode": "mas_artifacts_unclassified_entity_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_unclassified_entity_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["items 存在未归类项"]
+    },
+    {
+      "name": "MAS artifact export 字符串 false 负例",
+      "mode": "mas_artifacts_export_string_false_negative",
+      "check": "mas_artifacts",
+      "file": "mas_artifacts_export_string_false_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["validators_run 每项必须包含非空 name 和 boolean ok", "regression_result 必须包含 boolean ok"]
+    },
+    {
+      "name": "MAS source manifest 自动生成样例",
+      "mode": "mas_source_manifest_audio_plus_document",
+      "check": "mas_source_manifest",
+      "file": "mas_task_request_audio_plus_document.json",
+      "expect_source_mode": "audio_plus_document",
+      "expect_material_kinds": ["audio", "document"],
+      "expect_archive_allowed": false,
+      "required_terms": ["archive_not_confirmed_by_main_workflow", "synthetic_meeting.wav", "provided_transcript.md"]
+    },
+    {
+      "name": "MAS source manifest PDF 附件边界样例",
+      "mode": "mas_source_manifest_pdf_attachment",
+      "check": "mas_source_manifest",
+      "file": "mas_task_request_pdf_attachment.json",
+      "expect_source_mode": "document_only",
+      "expect_material_kinds": ["pdf_attachment"],
+      "expect_archive_allowed": false,
+      "required_terms": ["requires_extracted_text", "source.pdf"]
+    },
+    {
+      "name": "MAS source manifest CLI 以当前 dispatch 为权威上下文",
+      "mode": "mas_source_manifest_cli_bound_dispatch",
+      "check": "mas_source_manifest_cli_binding",
+      "file": "mas_task_request_fidelity_only.json",
+      "conflicting_request_file": "mas_task_request_document_with_attachments.json"
+    },
+    {
+      "name": "MAS task bundle strict audio 正例",
+      "mode": "mas_task_bundle_strict_audio",
+      "check": "mas_task_bundle",
+      "file": "mas_task_request_strict_audio.json",
+      "expect_mas_required": true,
+      "require_artifacts": ["source_manifest", "transcript_audit", "entity_verification_report", "doubtful_items", "target_attribution_review", "fidelity_review", "export_manifest"],
+      "require_artifact_owners": {"source_manifest": "Main Orchestrator", "doubtful_items": "Entity Verifier proposes; Main Orchestrator decides"},
+      "require_roles": ["Transcript Auditor", "Entity Verifier", "Target Attribution Reviewer", "Fidelity Reviewer", "Contract Verifier"],
+      "required_terms": ["Do not write, modify, assemble, or export final Markdown.", "Return only JSON", "scripts/validate_mas_artifacts.py"]
+    },
+    {
+      "name": "MAS task bundle validator 拒绝篡改 audio profile",
+      "mode": "mas_task_bundle_mutated_audio_profile_negative",
+      "check": "mas_task_bundle_mutation_reject",
+      "file": "mas_task_request_strict_audio.json",
+      "mutation": "audio_profile",
+      "expect_fail": true,
+      "required_error_terms": ["audio_only 必须使用 strict_audio run_profile", "task prompt 与角色契约不一致"]
+    },
+    {
+      "name": "MAS task bundle validator 拒绝缺失 secondary 生产者",
+      "mode": "mas_task_bundle_missing_secondary_producer_negative",
+      "check": "mas_task_bundle_mutation_reject",
+      "file": "mas_task_request_strict_audio.json",
+      "mutation": "drop_entity_secondary",
+      "expect_fail": true,
+      "required_error_terms": ["secondary_artifacts 与角色契约不一致", "缺少 artifact 生产者: doubtful_items"]
+    },
+    {
+      "name": "MAS task bundle validator 按 risk matrix 拒绝缩减审查范围",
+      "mode": "mas_task_bundle_risk_matrix_scope_negative",
+      "check": "mas_task_bundle_mutation_reject",
+      "file": "mas_task_request_strict_audio.json",
+      "mutation": "drop_entity_scope",
+      "expect_fail": true,
+      "required_error_terms": ["expected_artifacts 与 risk matrix 不一致"]
+    },
+    {
+      "name": "MAS task bundle validator 拒绝重复 specialist task",
+      "mode": "mas_task_bundle_duplicate_task_negative",
+      "check": "mas_task_bundle_mutation_reject",
+      "file": "mas_task_request_strict_audio.json",
+      "mutation": "duplicate_task",
+      "expect_fail": true,
+      "required_error_terms": ["artifact 必须恰好一个生产者: doubtful_items, entity_verification_report"]
+    },
+    {
+      "name": "MAS task bundle validator 拒绝重复 expected artifact",
+      "mode": "mas_task_bundle_duplicate_expected_negative",
+      "check": "mas_task_bundle_mutation_reject",
+      "file": "mas_task_request_strict_audio.json",
+      "mutation": "duplicate_expected_artifact",
+      "expect_fail": true,
+      "required_error_terms": ["expected_artifacts 不得重复"]
+    },
+    {
+      "name": "MAS task bundle 未知风险标记负例",
+      "mode": "mas_task_bundle_unknown_risk_negative",
+      "check": "mas_task_bundle_reject",
+      "file": "mas_task_request_unknown_risk_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["未知 risk_flags: typo_unknown_risk"]
+    },
+    {
+      "name": "MAS task bundle materials 字符串负例",
+      "mode": "mas_task_bundle_materials_string_negative",
+      "check": "mas_task_bundle_reject",
+      "file": "mas_task_request_materials_string_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["materials 必须是 JSON array"]
+    },
+    {
+      "name": "MAS task bundle 纯 PDF 正文来源早拒绝",
+      "mode": "mas_task_bundle_pdf_only_reject",
+      "check": "mas_task_bundle_reject",
+      "file": "mas_task_request_pdf_attachment.json",
+      "expect_fail": true,
+      "required_error_terms": ["pdf_attachment 不能替代正文"]
+    },
+    {
+      "name": "MAS task bundle 单一保真风险最小派发",
+      "mode": "mas_task_bundle_fidelity_only",
+      "check": "mas_task_bundle",
+      "file": "mas_task_request_fidelity_only.json",
+      "expect_mas_required": true,
+      "require_artifacts": ["source_manifest", "fidelity_review", "export_manifest"],
+      "forbid_artifacts": ["entity_verification_report", "doubtful_items", "transcript_audit", "source_reconciliation", "target_attribution_review"],
+      "require_roles": ["Fidelity Reviewer", "Contract Verifier"],
+      "require_task_inputs": {"fidelity_review": ["selected primary body source and source-selection rationale"]},
+      "forbidden_terms": ["Entity Verifier"]
+    },
+    {
+      "name": "MAS task bundle flags-only CLI 可生成规划",
+      "mode": "mas_task_bundle_cli_flags_only",
+      "check": "mas_task_bundle_cli",
+      "file": "text_only.md",
+      "cli_args": ["--run-profile", "fast_document", "--source-mode", "document_only", "--meeting-type", "公司交流"],
+      "expect_returncode": 0,
+      "required_terms": ["\"run_profile\": \"fast_document\"", "\"materials\": []"]
+    },
+    {
+      "name": "MAS task bundle CLI 支持材料参数并派发",
+      "mode": "mas_task_bundle_cli_material_dispatch",
+      "check": "mas_task_bundle_cli",
+      "file": "text_only.md",
+      "cli_args": ["--run-profile", "standard", "--source-mode", "document_only", "--risk", "fidelity_review", "--material", "synthetic-transcript.md"],
+      "with_task_dir": true,
+      "check_repeat_requires_overwrite": true,
+      "expect_returncode": 0,
+      "required_terms": ["synthetic-transcript.md", "fidelity_review"],
+      "require_task_files": ["mas_task_bundle.json", "dispatch_manifest.json"]
+    },
+    {
+      "name": "MAS task bundle 拒绝非 strict audio-only CLI 组合",
+      "mode": "mas_task_bundle_cli_audio_profile_reject",
+      "check": "mas_task_bundle_cli",
+      "file": "text_only.md",
+      "cli_args": ["--run-profile", "standard", "--source-mode", "audio_only", "--material", "synthetic.wav"],
+      "expect_returncode": 1,
+      "required_terms": ["audio_only 必须使用 strict_audio run_profile"]
+    },
+    {
+      "name": "MAS task bundle audio plus document 正例",
+      "mode": "mas_task_bundle_audio_plus_document",
+      "check": "mas_task_bundle",
+      "file": "mas_task_request_audio_plus_document.json",
+      "expect_mas_required": true,
+      "require_artifacts": ["source_manifest", "transcript_audit", "source_reconciliation", "entity_verification_report", "doubtful_items", "fidelity_review", "export_manifest"],
+      "require_artifact_owners": {"source_manifest": "Main Orchestrator", "source_reconciliation": "Source Reconciler"},
+      "require_roles": ["Transcript Auditor", "Source Reconciler", "Entity Verifier", "Fidelity Reviewer", "Contract Verifier"],
+      "require_task_inputs": {"fidelity_review": ["source_reconciliation"]},
+      "required_terms": ["primary body source", "Use only current-session meeting materials"]
+    },
+    {
+      "name": "MAS task bundle fast document 低风险跳过样例",
+      "mode": "mas_task_bundle_fast_document_skip",
+      "check": "mas_task_bundle",
+      "file": "mas_task_request_fast_document.json",
+      "expect_mas_required": false,
+      "forbid_artifacts": ["transcript_audit", "source_reconciliation", "target_attribution_review"],
+      "forbidden_terms": ["Transcript Auditor", "Source Reconciler", "Target Attribution Reviewer"]
+    },
+    {
+      "name": "MAS task bundle audio plus document 低风险跳过样例",
+      "mode": "mas_task_bundle_audio_plus_document_clear_skip",
+      "check": "mas_task_bundle",
+      "file": "mas_task_request_audio_plus_document_clear.json",
+      "expect_mas_required": false,
+      "forbid_artifacts": ["transcript_audit", "source_reconciliation", "target_attribution_review"],
+      "forbidden_terms": ["Transcript Auditor", "Source Reconciler", "Target Attribution Reviewer"]
+    },
+    {
+      "name": "MAS task bundle audio plus document 未比较触发样例",
+      "mode": "mas_task_bundle_audio_plus_document_uncompared",
+      "check": "mas_task_bundle",
+      "file": "mas_task_request_audio_plus_document_uncompared.json",
+      "expect_mas_required": true,
+      "require_artifacts": ["source_manifest", "transcript_audit", "source_reconciliation", "fidelity_review", "export_manifest"],
+      "forbid_artifacts": ["entity_verification_report", "doubtful_items"],
+      "required_terms": ["primary_source_uncertain", "not_compared"]
+    },
+    {
+      "name": "MAS task bundle audio plus document not_applicable 归一触发样例",
+      "mode": "mas_task_bundle_audio_plus_document_not_applicable",
+      "check": "mas_task_bundle",
+      "file": "mas_task_request_audio_plus_document_not_applicable.json",
+      "expect_mas_required": true,
+      "require_artifacts": ["source_manifest", "transcript_audit", "source_reconciliation", "fidelity_review", "export_manifest"],
+      "forbid_artifacts": ["entity_verification_report", "doubtful_items"],
+      "required_terms": ["primary_source_uncertain", "not_compared"]
+    },
+    {
+      "name": "MAS dispatch prompt files audio plus document 正例",
+      "mode": "mas_dispatch_files_audio_plus_document",
+      "check": "mas_task_dispatch_files",
+      "file": "mas_task_request_audio_plus_document.json",
+      "require_task_files": ["01-entity_verification_report.prompt.md", "02-source_reconciliation.prompt.md", "03-transcript_audit.prompt.md", "04-fidelity_review.prompt.md", "05-export_manifest.prompt.md"],
+      "required_terms": ["codex_subagent_optional", "Use this as the exact prompt for one Codex subagent", "Do not modify repository files or meeting-note files", "Do not upload private meeting materials", "Role inputs:", "Required checks:", "ASR noise versus human-correction traces", "\"doubtful_items\": []", "Return only JSON", "source_reconciliation", "dispatch_phase", "pre_draft", "draft_review", "final_verification", "Material Handoff"],
+      "check_overwrite_prompt_cleanup": true
+    },
+    {
+      "name": "MAS dispatch 纯文稿冲突主源示例正例",
+      "mode": "mas_dispatch_files_document_conflict",
+      "check": "mas_task_dispatch_files",
+      "file": "mas_task_request_document_conflict.json",
+      "expect_source_reconciliation_primary": "provided_document",
+      "required_terms": ["\"primary_body_source\": \"provided_document\""]
+    },
+    {
+      "name": "MAS dry-run 阶段闭环正例",
+      "mode": "mas_dry_run_audio_plus_document",
+      "check": "mas_dry_run",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "expect_phase_order": ["pre_draft", "draft_review", "final_verification"],
+      "expect_completed_phase_order": ["pre_draft", "draft_review", "final_verification"],
+      "expect_stop_reason": "completed",
+      "expect_phase_next_actions": [
+        {"phase": "pre_draft", "type": "collect_or_dispatch_phase_artifacts", "next_phase": "draft_review"},
+        {"phase": "draft_review", "type": "collect_or_dispatch_phase_artifacts", "next_phase": "final_verification"},
+        {"phase": "final_verification", "type": "continue_without_user_intervention", "next_phase": "complete"}
+      ],
+      "expect_final_next_action_type": "continue_without_user_intervention",
+      "expect_final_next_phase": "complete",
+      "expect_combined_artifacts": ["source_manifest", "main_action_receipt", "export_manifest"],
+      "expect_combined_export_hash_matches": true,
+      "require_trace_terms": ["01-entity_verification_report.prompt.md", "04-fidelity_review.prompt.md", "05-export_manifest.prompt.md", "mark_unresolved_business_items_as_doubtful"]
+    },
+    {
+      "name": "MAS collector source manifest 与当前 bundle 不一致负例",
+      "mode": "mas_collector_source_manifest_binding_negative",
+      "check": "mas_collect_artifacts",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "through_phase": "pre_draft",
+      "omit_artifacts": ["target_attribution_review", "fidelity_review", "export_manifest"],
+      "source_manifest_first_material_name": "wrong-session.wav",
+      "expect_fail": true,
+      "required_error_terms": ["source_manifest.materials 与当前 MAS task bundle 不一致"]
+    },
+    {
+      "name": "MAS collector metadata 不得作为文稿正文主源",
+      "mode": "mas_collector_metadata_primary_negative",
+      "check": "mas_collect_artifacts",
+      "file": "mas_task_request_document_with_attachments.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "through_phase": "pre_draft",
+      "use_generated_source_manifest": true,
+      "source_reconciliation_primary": "run.json",
+      "omit_artifacts": ["fidelity_review", "export_manifest"],
+      "expect_fail": true,
+      "required_error_terms": ["primary_body_source 未绑定到当前会话材料或允许的来源别名"]
+    },
+    {
+      "name": "MAS collector PDF 附件不得作为文稿正文主源",
+      "mode": "mas_collector_pdf_primary_negative",
+      "check": "mas_collect_artifacts",
+      "file": "mas_task_request_document_with_attachments.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "through_phase": "pre_draft",
+      "use_generated_source_manifest": true,
+      "source_reconciliation_primary": "slides.pdf",
+      "omit_artifacts": ["fidelity_review", "export_manifest"],
+      "expect_fail": true,
+      "required_error_terms": ["primary_body_source 未绑定到当前会话材料或允许的来源别名"]
+    },
+    {
+      "name": "MAS collector 混合来源自动继续时交叉源不得为空",
+      "mode": "mas_collector_cross_check_empty_negative",
+      "check": "mas_collect_artifacts",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "through_phase": "pre_draft",
+      "source_reconciliation_cross_check": "",
+      "omit_artifacts": ["target_attribution_review", "fidelity_review", "export_manifest"],
+      "expect_fail": true,
+      "required_error_terms": ["cross_check_source 不得为空"]
+    },
+    {
+      "name": "MAS collector 交叉源不得引用外部 URL",
+      "mode": "mas_collector_cross_check_external_negative",
+      "check": "mas_collect_artifacts",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "through_phase": "pre_draft",
+      "source_reconciliation_cross_check": "https://external.example/content",
+      "omit_artifacts": ["target_attribution_review", "fidelity_review", "export_manifest"],
+      "expect_fail": true,
+      "required_error_terms": ["cross_check_source 必须引用当前会话正文材料"]
+    },
+    {
+      "name": "MAS collector 混合来源主源与交叉源必须来自不同证据侧",
+      "mode": "mas_collector_cross_check_same_side_negative",
+      "check": "mas_collect_artifacts",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "through_phase": "pre_draft",
+      "source_reconciliation_cross_check": "audio_transcript",
+      "omit_artifacts": ["target_attribution_review", "fidelity_review", "export_manifest"],
+      "expect_fail": true,
+      "required_error_terms": ["必须来自不同且明确的证据侧"]
+    },
+    {
+      "name": "MAS collector 拒绝原始 envelope 顶层终稿字段",
+      "mode": "mas_collector_raw_envelope_final_negative",
+      "check": "mas_collect_artifacts",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "through_phase": "pre_draft",
+      "omit_artifacts": ["target_attribution_review", "fidelity_review", "export_manifest"],
+      "top_level_final_field_artifact": "transcript_audit",
+      "expect_fail": true,
+      "required_error_terms": ["transcript_audit.json.final_markdown 不得包含终稿字段"]
+    },
+    {
+      "name": "MAS collector 拒绝自报 validator 通过但实际 Markdown 无效",
+      "mode": "mas_collector_rechecks_markdown_negative",
+      "check": "mas_collect_artifacts",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "record_main_actions": true,
+      "invalid_markdown_claimed_valid": true,
+      "expect_fail": true,
+      "required_error_terms": ["export_manifest Markdown contract: 一级标题必须以 # 投资会议纪要 开头"]
+    },
+    {
+      "name": "MAS collector 拒绝 sidecar 核心上下文不一致",
+      "mode": "mas_collector_sidecar_context_mismatch_negative",
+      "check": "mas_collect_artifacts",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "record_main_actions": true,
+      "tamper_sidecar_field": {
+        "field": "上下文依据",
+        "value": "与 doubtful_items 不一致的合成上下文"
+      },
+      "expect_fail": true,
+      "required_error_terms": ["verification sidecar 与 doubtful_items 字段不一致"]
+    },
+    {
+      "name": "MAS live pilot trace 合成样例",
+      "mode": "mas_live_pilot_trace_synthetic",
+      "check": "mas_live_pilot_trace",
+      "file": "mas_live_pilot_trace_synthetic.json",
+      "expect_final_decision": "request_user",
+      "expect_phase_next_actions": [
+        {"phase": "pre_draft_initial", "collector_ok": false, "type": "repair_invalid_or_duplicate_artifacts", "next_phase": ""},
+        {"phase": "pre_draft_repaired", "collector_ok": true, "type": "collect_or_dispatch_phase_artifacts", "next_phase": "draft_review"},
+        {"phase": "draft_review", "collector_ok": true, "type": "collect_or_dispatch_phase_artifacts", "next_phase": "final_verification"},
+        {"phase": "final_verification", "collector_ok": true, "type": "ask_user_for_narrow_confirmation", "next_phase": "complete"}
+      ],
+      "require_final_actions": [
+        "ask_user_to_confirm_primary_body_source",
+        "keep_unverified_parts_doubtful_or_unconfirmed"
+      ],
+      "require_boundaries": [
+        "no_real_meeting_materials",
+        "subagents_process_only",
+        "final_markdown_owned_by_main_workflow",
+        "no_active_install_sync",
+        "no_commit_or_push"
+      ],
+      "required_terms": ["source_reconciliation.manual_review_required 必须是 boolean", "collector validation must run after every phase"]
+    },
+    {
+      "name": "MAS subagent artifact ingest 正例与修复归档",
+      "mode": "mas_ingest_artifact_source_reconciliation",
+      "check": "mas_ingest_artifact",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_subagent_return_source_reconciliation_valid.json",
+      "invalid_artifact_file": "mas_artifacts_manual_review_string_negative.json",
+      "through_phase": "pre_draft",
+      "expect_written_artifacts": ["source_reconciliation"],
+      "expect_next_collector_term": "--through-phase pre_draft",
+      "expect_duplicate_repair": true,
+      "expect_identity_guard": true
+    },
+    {
+      "name": "MAS subagent 不得伪造内部拆分字段负例",
+      "mode": "mas_ingest_artifact_reserved_split_negative",
+      "check": "mas_ingest_artifact",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_subagent_return_source_reconciliation_valid.json",
+      "invalid_artifact_file": "mas_subagent_return_reserved_split_negative.json",
+      "through_phase": "pre_draft",
+      "expect_written_artifacts": ["source_reconciliation"],
+      "expect_reserved_field_repair": true
+    },
+    {
+      "name": "MAS 多 artifact ingest 事务回滚与重试",
+      "mode": "mas_ingest_artifact_transaction_rollback",
+      "check": "mas_ingest_artifact",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_subagent_return_entity_valid.json",
+      "through_phase": "pre_draft",
+      "expect_written_artifacts": ["entity_verification_report", "doubtful_items"],
+      "expect_transaction_rollback": true
+    },
+    {
+      "name": "MAS next-action plan draft review 派发样例",
+      "mode": "mas_next_action_plan_draft_review",
+      "check": "mas_next_action_plan",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "through_phase": "pre_draft",
+      "omit_artifacts": ["fidelity_review", "target_attribution_review", "export_manifest"],
+      "expect_plan_status": "dispatch_or_collect_phase",
+      "expect_next_action_type": "collect_or_dispatch_phase_artifacts",
+      "expect_phase": "draft_review",
+      "expect_dispatch_artifacts": ["fidelity_review"],
+      "required_terms": ["04-fidelity_review.prompt.md", "ingest_mas_artifact.py", "--through-phase draft_review", "plan_only_no_side_effects"]
+    },
+    {
+      "name": "MAS next-action plan 转录修复执行清单样例",
+      "mode": "mas_plan_summary_transcript_repair",
+      "check": "mas_plan_summary",
+      "file": "mas_run_summary_transcript_repair.json",
+      "expect_plan_status": "repair_before_continue",
+      "required_terms": ["repair_before_continue", "repair_transcript_before_draft", "main_action_checklist"]
+    },
+    {
+      "name": "MAS next-action plan final main actions 清单样例",
+      "mode": "mas_next_action_plan_final_main_actions",
+      "check": "mas_next_action_plan",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "through_phase": "draft_review",
+      "omit_artifacts": ["export_manifest"],
+      "expect_plan_status": "apply_main_actions",
+      "expect_next_action_type": "apply_main_actions_before_final_verification",
+      "expect_phase": "draft_review",
+      "required_terms": ["main_action_checklist", "final_markdown_owner", "mark_unresolved_business_items_as_doubtful", "derive_final_doubtful_table_from_doubtful_items", "record_mas_main_actions.py", "Main Orchestrator"]
+    },
+    {
+      "name": "MAS phase operator draft review 闭环样例",
+      "mode": "mas_phase_operator_draft_review",
+      "check": "mas_phase_operator",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "through_phase": "draft_review",
+      "auto_source_manifest": true,
+      "return_artifacts": ["transcript_audit", "source_reconciliation", "entity_verification_report", "doubtful_items"],
+      "expect_operator_status": "dispatch_subagent_tasks",
+      "expect_plan_status": "dispatch_or_collect_phase",
+      "expect_next_action_type": "collect_or_dispatch_phase_artifacts",
+      "expect_phase": "draft_review",
+      "expect_dispatch_artifacts": ["fidelity_review"],
+      "required_terms": ["mas_operator_state.json", "mas_next_action_plan.json", "operator_harness_no_subagent_dispatch_no_final_markdown", "04-fidelity_review.prompt.md"]
+    },
+    {
+      "name": "MAS phase operator pre draft 初始派发样例",
+      "mode": "mas_phase_operator_pre_draft_initial",
+      "check": "mas_phase_operator",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "through_phase": "pre_draft",
+      "return_artifacts": [],
+      "expect_operator_status": "prepare_main_owned_and_dispatch_subagents",
+      "expect_plan_status": "dispatch_or_collect_phase",
+      "expect_next_action_type": "collect_or_dispatch_phase_artifacts",
+      "expect_phase": "pre_draft",
+      "expect_dispatch_artifacts": ["transcript_audit", "source_reconciliation", "entity_verification_report"],
+      "expect_main_owned_artifacts": ["source_manifest"],
+      "required_terms": ["source_manifest", "01-entity_verification_report.prompt.md", "02-source_reconciliation.prompt.md", "03-transcript_audit.prompt.md"]
+    },
+    {
+      "name": "MAS phase operator 自动 source manifest 初始派发样例",
+      "mode": "mas_phase_operator_auto_source_manifest_initial",
+      "check": "mas_phase_operator",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "through_phase": "pre_draft",
+      "auto_source_manifest": true,
+      "return_artifacts": [],
+      "expect_operator_status": "dispatch_subagent_tasks",
+      "expect_auto_source_manifest_status": "written",
+      "expect_plan_status": "dispatch_or_collect_phase",
+      "expect_next_action_type": "collect_or_dispatch_phase_artifacts",
+      "expect_phase": "pre_draft",
+      "expect_dispatch_artifacts": ["transcript_audit", "source_reconciliation", "entity_verification_report"],
+      "forbid_main_owned_artifacts": ["source_manifest"],
+      "required_terms": ["auto_source_manifest", "source_manifest.json"]
+    },
+    {
+      "name": "MAS phase operator request 初始化并自动 source manifest 样例",
+      "mode": "mas_phase_operator_request_auto_source_manifest",
+      "check": "mas_phase_operator",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "initialize_with_request": true,
+      "through_phase": "pre_draft",
+      "auto_source_manifest": true,
+      "return_artifacts": [],
+      "expect_operator_status": "dispatch_subagent_tasks",
+      "expect_auto_source_manifest_status": "written",
+      "expect_plan_status": "dispatch_or_collect_phase",
+      "expect_next_action_type": "collect_or_dispatch_phase_artifacts",
+      "expect_phase": "pre_draft",
+      "expect_dispatch_artifacts": ["transcript_audit", "source_reconciliation", "entity_verification_report"],
+      "forbid_main_owned_artifacts": ["source_manifest"]
+    },
+    {
+      "name": "MAS phase operator 全阶段闭环样例",
+      "mode": "mas_phase_operator_full_loop",
+      "check": "mas_phase_operator_full_loop",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "runs": [
+        {
+          "through_phase": "pre_draft",
+          "auto_source_manifest": true,
+          "return_artifacts": []
+        },
+        {
+          "through_phase": "draft_review",
+          "return_artifacts": ["transcript_audit", "source_reconciliation", "entity_verification_report", "doubtful_items"]
+        },
+        {
+          "through_phase": "draft_review",
+          "return_artifacts": ["fidelity_review"]
+        },
+        {
+          "through_phase": "final_verification",
+          "record_main_actions": true,
+          "return_artifacts": []
+        },
+        {
+          "through_phase": "final_verification",
+          "return_artifacts": ["export_manifest"]
+        }
+      ],
+      "expect_runs": [
+        {"index": 1, "operator_status": "dispatch_subagent_tasks", "phase": "pre_draft", "next_action_type": "collect_or_dispatch_phase_artifacts", "dispatch_artifacts": ["transcript_audit", "source_reconciliation", "entity_verification_report"]},
+        {"index": 2, "operator_status": "dispatch_subagent_tasks", "phase": "draft_review", "next_action_type": "collect_or_dispatch_phase_artifacts", "dispatch_artifacts": ["fidelity_review"]},
+        {"index": 3, "operator_status": "apply_main_actions", "phase": "draft_review", "next_action_type": "apply_main_actions_before_final_verification"},
+        {"index": 4, "operator_status": "dispatch_subagent_tasks", "phase": "final_verification", "next_action_type": "collect_or_dispatch_phase_artifacts", "dispatch_artifacts": ["export_manifest"]},
+        {"index": 5, "operator_status": "continue_main_workflow", "phase": "complete", "next_action_type": "continue_without_user_intervention"}
+      ],
+      "required_terms": ["dispatch_subagent_tasks", "apply_main_actions", "main_action_checklist", "mark_unresolved_business_items_as_doubtful"]
+    },
+    {
+      "name": "MAS collect artifacts audio plus document 正例",
+      "mode": "mas_collect_artifacts_audio_plus_document",
+      "check": "mas_collect_artifacts",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "record_main_actions": true,
+      "expect_decision": "automatic_doubtful",
+      "require_artifacts": ["source_manifest", "transcript_audit", "source_reconciliation", "entity_verification_report", "doubtful_items", "fidelity_review", "export_manifest"],
+      "expect_next_action_type": "continue_without_user_intervention",
+      "expect_next_phase": "complete",
+      "require_next_action_terms": ["applied_main_actions"]
+    },
+    {
+      "name": "MAS collect artifacts pre draft 阶段正例",
+      "mode": "mas_collect_artifacts_pre_draft",
+      "check": "mas_collect_artifacts",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "through_phase": "pre_draft",
+      "omit_artifacts": ["fidelity_review", "target_attribution_review", "export_manifest"],
+      "expect_decision": "automatic_doubtful",
+      "require_artifacts": ["source_manifest", "transcript_audit", "source_reconciliation", "entity_verification_report", "doubtful_items"],
+      "expect_next_action_type": "collect_or_dispatch_phase_artifacts",
+      "expect_next_phase": "draft_review",
+      "require_next_action_terms": ["fidelity_review", "04-fidelity_review.prompt.md"]
+    },
+    {
+      "name": "MAS collect artifacts draft review 阶段正例",
+      "mode": "mas_collect_artifacts_draft_review",
+      "check": "mas_collect_artifacts",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "through_phase": "draft_review",
+      "omit_artifacts": ["target_attribution_review", "export_manifest"],
+      "expect_decision": "automatic_doubtful",
+      "require_artifacts": ["source_manifest", "transcript_audit", "source_reconciliation", "entity_verification_report", "doubtful_items", "fidelity_review"],
+      "expect_next_action_type": "apply_main_actions_before_final_verification",
+      "expect_next_phase": "draft_review",
+      "require_next_action_terms": ["main_action_receipt", "mark_unresolved_business_items_as_doubtful"]
+    },
+    {
+      "name": "MAS collect artifacts final verification 阶段正例",
+      "mode": "mas_collect_artifacts_final_verification",
+      "check": "mas_collect_artifacts",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "record_main_actions": true,
+      "through_phase": "final_verification",
+      "expect_decision": "automatic_doubtful",
+      "require_artifacts": ["source_manifest", "transcript_audit", "source_reconciliation", "entity_verification_report", "doubtful_items", "fidelity_review", "export_manifest"],
+      "expect_next_action_type": "continue_without_user_intervention",
+      "expect_next_phase": "complete"
+    },
+    {
+      "name": "MAS final Markdown 回执后被修改负例",
+      "mode": "mas_collect_artifacts_markdown_hash_tamper_negative",
+      "check": "mas_collect_artifacts",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "record_main_actions": true,
+      "tamper_markdown_after_receipt": true,
+      "through_phase": "final_verification",
+      "expect_fail": true,
+      "required_error_terms": ["main_action_receipt Markdown 哈希与当前文件不一致", "export_manifest.markdown_sha256 与当前 Markdown 不一致"]
+    },
+    {
+      "name": "MAS collector 损坏控制文件结构化失败样例",
+      "mode": "mas_collector_corrupt_control",
+      "check": "mas_collector_corrupt_control",
+      "file": "mas_task_request_audio_plus_document.json"
+    },
+    {
+      "name": "MAS collect artifacts 缺必需项负例",
+      "mode": "mas_collect_artifacts_missing_required_negative",
+      "check": "mas_collect_artifacts",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "omit_artifacts": ["source_manifest"],
+      "expect_fail": true,
+      "required_error_terms": ["缺少必需 artifact: source_manifest"],
+      "expect_next_action_type": "collect_or_dispatch_phase_artifacts",
+      "expect_next_phase": "pre_draft",
+      "require_next_action_terms": ["source_manifest", "main_owned_missing_artifacts"]
+    },
+    {
+      "name": "MAS collect artifacts 重复项负例",
+      "mode": "mas_collect_artifacts_duplicate_negative",
+      "check": "mas_collect_artifacts",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_valid.json",
+      "duplicate_artifacts": ["source_reconciliation"],
+      "expect_fail": true,
+      "required_error_terms": ["重复 MAS artifact: source_reconciliation"],
+      "expect_next_action_type": "repair_invalid_or_duplicate_artifacts",
+      "require_next_action_terms": ["重复 MAS artifact: source_reconciliation"],
+      "require_duplicate_artifacts": ["source_reconciliation"]
+    },
+    {
+      "name": "MAS collect artifacts 无效项优先修复负例",
+      "mode": "mas_collect_artifacts_invalid_priority_negative",
+      "check": "mas_collect_artifacts",
+      "file": "mas_task_request_audio_plus_document.json",
+      "artifact_file": "mas_artifacts_manual_review_string_negative.json",
+      "expect_fail": true,
+      "required_error_terms": ["source_reconciliation.manual_review_required 必须是 boolean"],
+      "expect_next_action_type": "repair_invalid_or_duplicate_artifacts",
+      "require_next_action_terms": ["source_reconciliation.manual_review_required 必须是 boolean"]
+    },
+    {
+      "name": "MAS decision 自动通过样例",
+      "mode": "mas_decision_auto_pass",
+      "check": "mas_decision",
+      "file": "mas_artifacts_auto_pass.json",
+      "require_artifacts": ["source_manifest", "entity_verification_report", "doubtful_items", "fidelity_review", "export_manifest"],
+      "expect_decision": "automatic_pass",
+      "require_actions": ["continue_without_user_intervention"]
+    },
+    {
+      "name": "MAS decision 主流程动作未验证负例",
+      "mode": "mas_decision_main_actions_unverified_negative",
+      "check": "mas_decision",
+      "file": "mas_artifacts_main_actions_unverified_negative.json",
+      "require_artifacts": ["source_manifest", "entity_verification_report", "doubtful_items", "fidelity_review", "export_manifest"],
+      "expect_decision": "repair_required",
+      "require_actions": ["repair_export_or_validator_failure"]
+    },
+    {
+      "name": "MAS decision 转录修复门禁样例",
+      "mode": "mas_decision_transcript_repair",
+      "check": "mas_decision",
+      "file": "mas_artifacts_transcript_repair.json",
+      "require_artifacts": ["transcript_audit"],
+      "expect_decision": "repair_required",
+      "require_actions": ["repair_transcript_before_draft"]
+    },
+    {
+      "name": "MAS decision 回归未通过修复样例",
+      "mode": "mas_decision_failed_regression_repair",
+      "check": "mas_decision",
+      "file": "mas_artifacts_failed_regression.json",
+      "require_artifacts": ["source_manifest", "entity_verification_report", "doubtful_items", "fidelity_review", "export_manifest"],
+      "expect_decision": "repair_required",
+      "require_actions": ["repair_export_or_validator_failure"]
+    },
+    {
+      "name": "MAS decision 结构化回归失败修复样例",
+      "mode": "mas_decision_failed_regression_object_repair",
+      "check": "mas_decision",
+      "file": "mas_artifacts_failed_regression_object.json",
+      "require_artifacts": ["source_manifest", "entity_verification_report", "doubtful_items", "fidelity_review", "export_manifest"],
+      "expect_decision": "repair_required",
+      "require_actions": ["repair_export_or_validator_failure"]
+    },
+    {
+      "name": "MAS decision 结构化 validator 失败修复样例",
+      "mode": "mas_decision_failed_validator_object_repair",
+      "check": "mas_decision",
+      "file": "mas_artifacts_failed_validator_object.json",
+      "require_artifacts": ["source_manifest", "entity_verification_report", "doubtful_items", "fidelity_review", "export_manifest"],
+      "expect_decision": "repair_required",
+      "require_actions": ["repair_export_or_validator_failure"]
+    },
+    {
+      "name": "MAS decision 缺必需 artifact 负例",
+      "mode": "mas_decision_missing_required_artifact_negative",
+      "check": "mas_decision",
+      "file": "mas_artifacts_incomplete_negative.json",
+      "require_artifacts": ["source_manifest", "entity_verification_report", "doubtful_items", "fidelity_review", "export_manifest"],
+      "expect_fail": true,
+      "required_error_terms": ["缺少必需 artifact: entity_verification_report"]
+    },
+    {
+      "name": "MAS decision 自动标存疑样例",
+      "mode": "mas_decision_automatic_doubtful",
+      "check": "mas_decision",
+      "file": "mas_artifacts_valid.json",
+      "require_artifacts": ["source_manifest", "transcript_audit", "source_reconciliation", "entity_verification_report", "doubtful_items", "target_attribution_review", "fidelity_review", "export_manifest"],
+      "expect_decision": "automatic_doubtful",
+      "require_actions": ["mark_unresolved_business_items_as_doubtful", "derive_final_doubtful_table_from_doubtful_items"]
+    },
+    {
+      "name": "MAS decision 修复优先于请求人工样例",
+      "mode": "mas_decision_request_user",
+      "check": "mas_decision",
+      "file": "mas_artifacts_request_user.json",
+      "require_artifacts": ["source_manifest", "source_reconciliation", "entity_verification_report", "doubtful_items", "fidelity_review", "export_manifest"],
+      "expect_decision": "repair_required",
+      "require_actions": ["repair_export_or_validator_failure", "ask_user_to_confirm_primary_body_source", "ask_user_only_for_flagged_doubtful_items"]
+    },
+    {
+      "name": "MAS decision 无需用户确认不触发请求样例",
+      "mode": "mas_decision_no_user_request_marker",
+      "check": "mas_decision",
+      "file": "mas_artifacts_no_user_request_marker.json",
+      "require_artifacts": ["doubtful_items"],
+      "expect_decision": "automatic_doubtful",
+      "require_actions": ["derive_final_doubtful_table_from_doubtful_items"]
+    },
+    {
+      "name": "核验规则用户纠错优先级文档检查",
+      "mode": "reference_verification_policy",
+      "check": "text_contains",
+      "file": "../verification_policy.md",
+      "required_terms": ["用户对公司名、股票代码、术语、候选项或事实边界的明确纠正/确认", "高优先级人工修正", "记录冲突并保留为存疑", "转录、校对、识别、联网核验、编辑、排版和验证不得静默跳过"]
+    },
+    {
+      "name": "分会议类型的终稿命名契约检查",
+      "mode": "reference_archive_naming_by_meeting_type",
+      "check": "text_contains",
+      "file": "../archive_naming_contract.md",
+      "required_terms": ["YYYY-MM-DD - 会议系列.md", "YYYY-MM-DD - 公司名 - 上市公司交流.md", "YYYY-MM-DD - 主题 - 专家交流.md", "MEETING_REVIEW_SERIES", "exactly one configured series", "explicit user confirmation"]
+    },
+    {
+      "name": "多人复盘会导出命名仅使用会议系列",
+      "mode": "export_filename",
+      "check": "export_filename",
+      "file": "text_only.md",
+      "meeting_date_override": "2032-07-01",
+      "expected_stem": "2032-07-01 - 研究所周会"
+    },
+    {
+      "name": "多人复盘会从会议标题匹配已知系列",
+      "mode": "export_filename_infer_review_series",
+      "check": "export_filename",
+      "file": "export_naming_infer_series.md",
+      "review_series": ["示例路演系列"],
+      "expected_stem": "2032-07-02 - 示例路演系列"
+    },
+    {
+      "name": "多人复盘会无法匹配系列时要求确认",
+      "mode": "export_filename_placeholder",
+      "check": "export_filename",
+      "file": "export_naming_missing_metadata.md",
+      "expect_fail": true,
+      "required_error_terms": ["无法确定多人复盘会的会议系列"]
+    },
+    {
+      "name": "上市公司交流导出命名使用公司名",
+      "mode": "export_filename_listed_company",
+      "check": "export_filename",
+      "file": "listed_company.md",
+      "expected_stem": "2032-05-11 - 测试公司 - 上市公司交流"
+    },
+    {
+      "name": "专家交流导出命名使用主题",
+      "mode": "export_filename_expert_call",
+      "check": "export_filename",
+      "file": "expert_call.md",
+      "expected_stem": "2032-05-11 - 测试 - 专家交流"
+    },
+    {
+      "name": "并发导出不覆盖同名 Markdown",
+      "mode": "export_concurrent_unique_paths",
+      "check": "export_concurrent",
+      "file": "text_only.md",
+      "meeting_date_override": "2032-07-01",
+      "count": 8
+    },
+    {
+      "name": "并发归档不覆盖同名原始材料",
+      "mode": "archive_concurrent_unique_paths",
+      "check": "archive_concurrent",
+      "file": "text_only.md",
+      "archive_date": "2032-07-01",
+      "meeting_title": "合成并发归档",
+      "count": 8
+    },
+    {
+      "name": "导出 part 清理失败不反转发布状态",
+      "mode": "export_part_cleanup_failure",
+      "check": "export_part_cleanup_failure",
+      "file": "text_only.md",
+      "meeting_date_override": "2032-07-01"
+    },
+    {
+      "name": "归档 part 清理失败不反转发布状态",
+      "mode": "archive_part_cleanup_failure",
+      "check": "archive_part_cleanup_failure",
+      "file": "text_only.md",
+      "archive_date": "2032-07-01",
+      "meeting_title": "合成归档"
+    },
+    {
+      "name": "目标文件系统不支持 hard-link 时安全失败",
+      "mode": "atomic_publish_unsupported",
+      "check": "atomic_publish_unsupported",
+      "file": "text_only.md",
+      "meeting_date_override": "2032-07-01",
+      "archive_date": "2032-07-01",
+      "meeting_title": "合成归档"
+    },
+    {
+      "name": "导出非法日期负例",
+      "mode": "export_invalid_date_negative",
+      "check": "export_filename",
+      "file": "invalid_date_negative.md",
+      "expect_fail": true,
+      "required_error_terms": ["会议日期 必须为 YYYY-MM-DD"]
+    },
+    {
+      "name": "文本-only 样例",
+      "mode": "text_only",
+      "source_mode": "document_only",
+      "file": "text_only.md",
+      "required_terms": ["甲辰芯片", "订单能见度改善", "没有加仓"]
+    },
+    {
+      "name": "音频转写-only 样例",
+      "mode": "audio_only",
+      "file": "audio_only.md",
+      "verification_file": "audio_only.verification.json",
+      "require_verification": true,
+      "require_audio_timestamps": true,
+      "timestamp_index_file": "timestamp_index_sentence.json",
+      "timestamp_index_require_reliable": true,
+      "required_terms": ["北美算力", "15万元一吨", "十七八倍"]
+    },
+    {
+      "name": "verification sidecar 缺字段负例",
+      "mode": "audio_bad_verification_negative",
+      "file": "audio_only.md",
+      "verification_file": "audio_bad_verification.verification.json",
+      "require_verification": true,
+      "expect_fail": true,
+      "required_error_terms": ["缺少字段"]
+    },
+    {
+      "name": "verification sidecar false 记录负例",
+      "mode": "audio_false_sidecar_negative",
+      "file": "audio_only.md",
+      "verification_file": "audio_false_sidecar.verification.json",
+      "require_verification": true,
+      "expect_fail": true,
+      "required_error_terms": ["sidecar 记录必须来自 是否需要 sidecar=true"]
+    },
+    {
+      "name": "verification sidecar 字符串 true 负例",
+      "mode": "audio_string_true_sidecar_negative",
+      "file": "audio_only.md",
+      "verification_file": "audio_string_true_sidecar.verification.json",
+      "require_verification": true,
+      "expect_fail": true,
+      "required_error_terms": ["是否需要 sidecar 必须是 boolean"]
+    },
+    {
+      "name": "verification sidecar 空原始表述负例",
+      "mode": "audio_empty_raw_sidecar_negative",
+      "file": "audio_only.md",
+      "verification_file": "audio_empty_raw_sidecar.verification.json",
+      "require_verification": true,
+      "expect_fail": true,
+      "required_error_terms": ["原始表述 不得为空"]
+    },
+    {
+      "name": "verification sidecar 人名 true 负例",
+      "mode": "audio_person_true_sidecar_negative",
+      "file": "audio_only.md",
+      "verification_file": "audio_person_true_sidecar.verification.json",
+      "require_verification": true,
+      "expect_fail": true,
+      "required_error_terms": ["非人名业务存疑项"]
+    },
+    {
+      "name": "verification sidecar 未知存疑类型负例",
+      "mode": "audio_unknown_type_sidecar_negative",
+      "file": "audio_only.md",
+      "verification_file": "audio_unknown_type_sidecar.verification.json",
+      "require_verification": true,
+      "expect_fail": true,
+      "required_error_terms": ["存疑类型必须为固定枚举值"]
+    },
+    {
+      "name": "音频+文稿 样例",
+      "mode": "audio_text",
+      "source_mode": "audio_plus_document",
+      "file": "audio_text.md",
+      "require_audio_timestamps": true,
+      "required_terms": ["光模块", "800G", "我还是觉得", "我不想只写成订单好转", "存疑：示例算力公司供货节奏"]
+    },
+    {
+      "name": "音频无可靠时间戳样例",
+      "mode": "audio_unavailable_timestamp",
+      "source_mode": "audio",
+      "timestamp_mode": "unavailable",
+      "file": "audio_unavailable_timestamp.md",
+      "required_terms": ["没有可靠时间戳 anchor", "OCS"]
+    },
+    {
+      "name": "低精度时间戳误用负例",
+      "mode": "audio_low_precision_timestamp_negative",
+      "file": "audio_low_precision_timestamp_negative.md",
+      "require_audio_timestamps": true,
+      "timestamp_index_file": "timestamp_index_low_precision_negative.json",
+      "timestamp_index_require_reliable": true,
+      "expect_fail": true,
+      "required_error_terms": ["低精度 chunk 不得作为可靠存疑时间戳"]
+    },
+    {
+      "name": "短 SenseVoice VAD segment 存疑时间戳样例",
+      "mode": "timestamp_index_sensevoice_vad_segment",
+      "file": "audio_only.md",
+      "timestamp_index_file": "timestamp_index_sensevoice_vad_segment.json",
+      "timestamp_index_require_reliable": true,
+      "required_terms": ["北美算力"]
+    },
+    {
+      "name": "过长 SenseVoice VAD segment 负例",
+      "mode": "timestamp_index_sensevoice_vad_segment_long_negative",
+      "file": "audio_only.md",
+      "timestamp_index_file": "timestamp_index_sensevoice_vad_segment_long_negative.json",
+      "timestamp_index_require_reliable": true,
+      "expect_fail": true,
+      "required_error_terms": ["duration_ms"]
+    },
+    {
+      "name": "可靠时间戳索引为空负例",
+      "mode": "timestamp_index_empty_negative",
+      "file": "audio_only.md",
+      "timestamp_index_file": "timestamp_index_empty_negative.json",
+      "timestamp_index_require_reliable": true,
+      "expect_fail": true,
+      "required_error_terms": ["timestamp_index 不能为空"]
+    },
+    {
+      "name": "未选中低精度 timestamp 内部线索样例",
+      "mode": "timestamp_index_unselected_low_precision",
+      "file": "audio_only.md",
+      "timestamp_index_file": "timestamp_index_unselected_low_precision.json",
+      "required_warning_terms": ["未被选中用于存疑"]
+    },
+    {
+      "name": "多人复盘会类型样例",
+      "mode": "meeting_type_review",
+      "source_mode": "document",
+      "file": "review_meeting.md",
+      "required_terms": ["多人复盘会", "真实顺序", "云帆通信", "我今天还是围绕", "我没有减仓", "不想改成别的说法", "海岳存储(456789.SH)｜星河存储(567890.SZ)", "星桥精密(678901.SZ)"]
+    },
+    {
+      "name": "空标的标题负例",
+      "mode": "empty_target_heading_negative",
+      "source_mode": "document",
+      "file": "empty_target_heading_negative.md",
+      "expect_fail": true,
+      "required_error_terms": ["标题不得使用空括号占位"]
+    },
+    {
+      "name": "多人复盘会无层级主题行负例",
+      "mode": "review_naked_topic_heading_negative",
+      "source_mode": "document",
+      "file": "review_naked_topic_heading_negative.md",
+      "expect_fail": true,
+      "required_error_terms": ["不得使用无层级的【…】行"]
+    },
+    {
+      "name": "多人复盘会标的缺代码负例",
+      "mode": "review_target_missing_code_negative",
+      "source_mode": "document",
+      "file": "review_target_missing_code_negative.md",
+      "expect_fail": true,
+      "required_error_terms": ["每个证券必须包含已确认代码和市场后缀"]
+    },
+    {
+      "name": "导出器阻断标的缺代码纪要",
+      "mode": "export_rejects_target_missing_code",
+      "check": "export_filename",
+      "file": "review_target_missing_code_negative.md",
+      "expected_stem": "不会生成",
+      "expect_fail": true,
+      "required_error_terms": ["会议纪要输出契约校验失败", "每个证券必须包含已确认代码和市场后缀"]
+    },
+    {
+      "name": "发言人标题上下文识别样例",
+      "mode": "speaker_identity_context",
+      "source_mode": "document",
+      "file": "speaker_identity_context.md",
+      "required_terms": ["### 科技研究员", "### 发言人2", "### 科技负责人", "我是科技研究员", "暂时听不出身份"]
+    },
+    {
+      "name": "主题伪装发言人标题负例",
+      "mode": "speaker_heading_theme_negative",
+      "source_mode": "document",
+      "file": "speaker_heading_theme_negative.md",
+      "expect_fail": true,
+      "required_error_terms": ["发言人标题不是标的或主题标题"]
+    },
+    {
+      "name": "多人复盘会缺板块标题 warning 样例",
+      "mode": "review_missing_heading_warning",
+      "source_mode": "document",
+      "file": "review_missing_heading_warning.md",
+      "required_warning_terms": ["缺少相邻板块标题"],
+      "required_terms": ["不应该阻断导出"]
+    },
+    {
+      "name": "标题逃逸负例",
+      "mode": "escape_heading_negative",
+      "source_mode": "document",
+      "file": "escape_heading_negative.md",
+      "expect_fail": true,
+      "required_error_terms": ["契约外逃逸标题"]
+    },
+    {
+      "name": "人称改写负例",
+      "mode": "pronoun_rewrite_negative",
+      "source_mode": "document",
+      "file": "pronoun_rewrite_negative.md",
+      "required_terms": ["我没有减仓"],
+      "forbidden_terms": ["发言人1认为", "发言人认为"],
+      "expect_fail": true,
+      "required_error_terms": ["缺少样例关键锚点", "包含样例禁止锚点"]
+    },
+    {
+      "name": "总结化整理负例",
+      "mode": "summary_compression_negative",
+      "source_mode": "document",
+      "file": "summary_compression_negative.md",
+      "required_terms": ["我对存储方向继续看好", "我的仓位不想一次性加满"],
+      "forbidden_terms": ["总结来看", "发言人主要"],
+      "expect_fail": true,
+      "required_error_terms": ["缺少样例关键锚点", "包含样例禁止锚点"]
+    },
+    {
+      "name": "口水词清理边界样例",
+      "mode": "filler_cleanup",
+      "source_mode": "document",
+      "file": "filler_cleanup.md",
+      "required_terms": ["我觉得", "可能", "仓位先不追太满"],
+      "forbidden_terms": ["呃", "然后然后", "那个那个"]
+    },
+    {
+      "name": "口水词过度清理负例",
+      "mode": "filler_cleanup_overreach_negative",
+      "source_mode": "document",
+      "file": "filler_cleanup_overreach_negative.md",
+      "required_terms": ["我觉得", "可能", "仓位先不追太满"],
+      "forbidden_terms": ["总结来看"],
+      "expect_fail": true,
+      "required_error_terms": ["缺少样例关键锚点", "包含样例禁止锚点"]
+    },
+    {
+      "name": "转录预处理保留实体中的单字",
+      "mode": "process_transcript_entity_filler",
+      "check": "process_transcript",
+      "file": "text_only.md",
+      "input_text": "发言人1：青岚股份订单有变化，云川医药今天提了一下。",
+      "expected_segment_count": 1,
+      "required_terms": ["青岚股份订单有变化", "云川医药今天提了一下"],
+      "forbidden_terms": ["森股份订单有变化，药股份"]
+    },
+    {
+      "name": "转录预处理识别数字发言人",
+      "mode": "process_transcript_numeric_speakers",
+      "check": "process_transcript",
+      "file": "text_only.md",
+      "input_text": "发言人1：我看好半导体。\n【发言人2】我看好存储。",
+      "expected_segment_count": 2,
+      "required_terms": ["### 1. 发言人1", "### 2. 发言人2", "我看好半导体", "我看好存储"],
+      "forbidden_terms": ["### 1. 发言人A"]
+    },
+    {
+      "name": "转录预处理识别 Speaker 与带后缀角色标签",
+      "mode": "process_transcript_speaker_and_role_labels",
+      "check": "process_transcript",
+      "file": "text_only.md",
+      "input_text": "Speaker 1: 我先讲需求。\nSpeaker 2: 我补充库存。\n主持人A：请继续。\n分析师1：我补充估值。\n【嘉宾甲】我补充订单。",
+      "expected_segment_count": 5,
+      "required_terms": ["### 1. 发言人1", "### 2. 发言人2", "### 3. 主持人A", "### 4. 分析师1", "### 5. 嘉宾甲"]
+    },
+    {
+      "name": "转录预处理按明确名单识别拉丁字母标签",
+      "mode": "process_transcript_preferred_latin_speakers",
+      "check": "process_transcript",
+      "file": "text_only.md",
+      "input_text": "CJ 00:01 我先讲需求。\nJQ 00:02 我补充库存。\nABC：我补充估值。",
+      "preferred_speakers": ["CJ", "JQ", "ABC"],
+      "expected_segment_count": 3,
+      "required_terms": ["### 1. CJ", "### 2. JQ", "### 3. ABC"]
+    },
+    {
+      "name": "转录预处理归一化同一匿名发言人别名",
+      "mode": "process_transcript_anonymous_alias_normalization",
+      "check": "process_transcript",
+      "file": "text_only.md",
+      "input_text": "Speaker 1: 我先讲需求。\n发言人1：我再补充库存。",
+      "preferred_speakers": ["Speaker 1", "发言人1"],
+      "expected_segment_count": 2,
+      "required_terms": ["### 1. 发言人1", "### 2. 发言人1"],
+      "forbidden_terms": ["### 1. Speaker 1", "### 2. Speaker 1"]
+    },
+    {
+      "name": "转录预处理不把主题标签当发言人",
+      "mode": "process_transcript_theme_labels_not_speakers",
+      "check": "process_transcript",
+      "file": "text_only.md",
+      "input_text": "核心观点：算力景气度继续提升。\n风险提示：订单存在不确定性。\n科技板块：半导体设备有修复。",
+      "expected_segment_count": 1,
+      "required_terms": ["### 1. 发言人1", "核心观点：算力景气度继续提升", "风险提示：订单存在不确定性", "科技板块：半导体设备有修复"],
+      "forbidden_terms": ["### 1. 核心观点", "### 2. 风险提示", "### 3. 科技板块"]
+    },
+    {
+      "name": "转录预处理识别多个单次中文姓名",
+      "mode": "process_transcript_one_off_named_speakers",
+      "check": "process_transcript",
+      "file": "text_only.md",
+      "input_text": "张三：我先讲半导体。\n李四：我再补充设备订单。",
+      "preferred_speakers": ["张三", "李四"],
+      "expected_segment_count": 2,
+      "required_terms": ["### 1. 张三", "### 2. 李四", "我先讲半导体", "我再补充设备订单"]
+    },
+    {
+      "name": "转录预处理不把重复主题或公司当发言人",
+      "mode": "process_transcript_repeated_subjects_not_speakers",
+      "check": "process_transcript",
+      "file": "text_only.md",
+      "input_text": "行业判断：需求正在恢复。\n行业判断：但库存仍需跟踪。\n甲辰芯片：产能利用率改善。\n甲辰芯片：成熟制程仍有竞争。\n华辰科技：订单预期改善。\n新城置业：销售仍需观察。\n高端：设备订单恢复。\nAI：算力需求继续增长。\n【半导体】设备需求同比修复。\n【半导体】订单节奏待确认。",
+      "expected_segment_count": 1,
+      "required_terms": ["### 1. 发言人1", "行业判断：需求正在恢复", "甲辰芯片：产能利用率改善", "华辰科技：订单预期改善", "新城置业：销售仍需观察", "高端：设备订单恢复", "AI：算力需求继续增长", "【半导体】设备需求同比修复"],
+      "forbidden_terms": ["### 1. 行业判断", "### 1. 甲辰芯片", "### 1. 华辰科技", "### 1. 新城置业", "### 1. 高端", "### 1. AI", "### 1. 半导体"]
+    },
+    {
+      "name": "转录预处理识别稳定重复中文发言人标签",
+      "mode": "process_transcript_repeated_named_speaker",
+      "check": "process_transcript",
+      "file": "text_only.md",
+      "input_text": "张三：我先讲半导体。\n张三：我再补充设备订单。",
+      "preferred_speakers": ["张三"],
+      "expected_segment_count": 2,
+      "required_terms": ["### 1. 张三", "### 2. 张三", "我先讲半导体", "我再补充设备订单"]
+    },
+    {
+      "name": "转录预处理按明确名单识别单次中文发言人",
+      "mode": "process_transcript_preferred_named_speaker",
+      "check": "process_transcript",
+      "file": "text_only.md",
+      "input_text": "李四：我只发言一次，但名单已明确。",
+      "preferred_speakers": ["李四"],
+      "expected_segment_count": 1,
+      "required_terms": ["### 1. 李四", "我只发言一次，但名单已明确"]
+    },
+    {
+      "name": "转录预处理不把行业短句当公司名",
+      "mode": "process_transcript_industry_not_company",
+      "check": "process_transcript",
+      "file": "text_only.md",
+      "input_text": "发言人1：我看好半导体。",
+      "expected_segment_count": 1,
+      "required_terms": ["疑似公司名称：未识别", "我看好半导体"],
+      "forbidden_terms": ["疑似公司名称：我看好半导体"]
+    },
+    {
+      "name": "转录预处理保留因果与先后关系",
+      "mode": "process_transcript_preserve_causality",
+      "check": "process_transcript",
+      "file": "text_only.md",
+      "input_text": "发言人1：那个订单不能删，所以我没有减仓，然后继续观察订单，就是说风险还没有解除。",
+      "expected_segment_count": 1,
+      "required_terms": ["所以我没有减仓", "然后继续观察订单", "就是说风险还没有解除", "那个订单不能删"]
+    },
+    {
+      "name": "转录预处理空输入负例",
+      "mode": "process_transcript_empty_input_negative",
+      "check": "process_transcript",
+      "file": "text_only.md",
+      "input_text": "",
+      "expect_fail": true,
+      "required_error_terms": ["输入文本为空"]
+    },
+    {
+      "name": "SenseVoice bridge 缺 audio 字段负例",
+      "mode": "sensevoice_bridge_no_audio_negative",
+      "check": "sensevoice_bridge_form",
+      "file": "text_only.md",
+      "expect_fail": true,
+      "required_error_terms": ["audio field required"]
+    },
+    {
+      "name": "SenseVoice bridge 空转写结果负例",
+      "mode": "sensevoice_bridge_empty_result_negative",
+      "check": "sensevoice_empty_result",
+      "file": "text_only.md"
+    },
+    {
+      "name": "SenseVoice 受管输出不混入上一轮结果",
+      "mode": "sensevoice_managed_outputs_cleanup",
+      "check": "sensevoice_managed_outputs",
+      "file": "text_only.md"
+    },
+    {
+      "name": "SenseVoice 输出事务回滚与同 stem 串行化",
+      "mode": "sensevoice_output_transaction",
+      "check": "sensevoice_output_transaction",
+      "file": "text_only.md"
+    },
+    {
+      "name": "公司交流类型样例",
+      "mode": "meeting_type_listed_company",
+      "source_mode": "document",
+      "file": "listed_company.md",
+      "required_terms": ["公司交流", "单家公司交流", "公司经营"]
+    },
+    {
+      "name": "公司交流裸 Q 格式负例",
+      "mode": "listed_company_bare_q_negative",
+      "source_mode": "document",
+      "file": "listed_company_bare_q_negative.md",
+      "expect_fail": true,
+      "required_error_terms": ["包含禁止输出内容"]
+    },
+    {
+      "name": "专家交流类型样例",
+      "mode": "meeting_type_expert_call",
+      "source_mode": "document",
+      "file": "expert_call.md",
+      "required_terms": ["专家交流", "问答线索", "设备订单"]
+    },
+    {
+      "name": "专家交流裸提问格式负例",
+      "mode": "expert_call_bare_q_negative",
+      "source_mode": "document",
+      "file": "expert_call_bare_q_negative.md",
+      "expect_fail": true,
+      "required_error_terms": ["包含禁止输出内容"]
+    },
+    {
+      "name": "非法日期元信息负例",
+      "mode": "invalid_date_negative",
+      "source_mode": "document",
+      "file": "invalid_date_negative.md",
+      "expect_fail": true,
+      "required_error_terms": ["会议日期 必须为 YYYY-MM-DD", "整理时间 必须为 YYYY-MM-DD"]
+    },
+    {
+      "name": "非零填充日期元信息负例",
+      "mode": "non_padded_date_negative",
+      "source_mode": "document",
+      "file": "non_padded_date_negative.md",
+      "expect_fail": true,
+      "required_error_terms": ["会议日期 必须为 YYYY-MM-DD", "整理时间 必须为 YYYY-MM-DD"]
+    },
+    {
+      "name": "音频未提供时间戳负例",
+      "mode": "audio_missing_timestamp_negative",
+      "file": "audio_missing_timestamp_negative.md",
+      "require_audio_timestamps": true,
+      "expect_fail": true,
+      "required_error_terms": ["不允许将存疑时间戳写成未提供"]
+    },
+    {
+      "name": "可靠音频正文缺 inline 时间戳负例",
+      "mode": "audio_missing_inline_timestamp_negative",
+      "file": "audio_missing_inline_timestamp_negative.md",
+      "require_audio_timestamps": true,
+      "expect_fail": true,
+      "required_error_terms": ["必须补充存疑时间戳"]
+    },
+    {
+      "name": "可靠音频非法时间戳负例",
+      "mode": "audio_invalid_timestamp_negative",
+      "file": "audio_invalid_timestamp_negative.md",
+      "require_audio_timestamps": true,
+      "expect_fail": true,
+      "required_error_terms": ["存疑时间戳格式必须为"]
+    },
+    {
+      "name": "文稿误写存疑时间戳负例",
+      "mode": "document_inline_timestamp_negative",
+      "source_mode": "document",
+      "file": "document_inline_timestamp_negative.md",
+      "expect_fail": true,
+      "required_error_terms": ["不应出现存疑时间戳"]
+    }
+  ]
+}

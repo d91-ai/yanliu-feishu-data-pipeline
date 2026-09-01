@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "repositories": [
+    {
+      "name": "industry-market-viewpoints",
+      "url": "https://github.com/d91-ai/yanliu-feishu-data-pipeline.git",
+      "branch": "main",
+      "promoted_commit": "",
+      "runtime_enabled": false
+    },
+    {
+      "name": "structured-table",
+      "url": "https://github.com/d91-ai/yanliu-feishu-data-pipeline.git",
+      "branch": "main",
+      "promoted_commit": "",
+      "runtime_enabled": false
+    },
+    {
+      "name": "meeting-minutes-sanitizer",
+      "url": "https://github.com/d91-ai/yanliu-feishu-data-pipeline.git",
+      "branch": "main",
+      "promoted_commit": "",
+      "runtime_enabled": false
+    }
+  ]
+}

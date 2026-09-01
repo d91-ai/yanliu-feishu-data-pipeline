@@ -1,0 +1,66 @@
+{
+  "artifacts": {
+    "source_manifest": {
+      "source_mode": "audio_plus_document",
+      "materials": [
+        {"kind": "audio", "name": "synthetic_meeting.wav"},
+        {"kind": "document", "name": "provided_transcript.md"}
+      ],
+      "archive_allowed": true,
+      "archive_status": "skipped_for_fixture",
+      "skipped_reason": "synthetic_regression"
+    },
+    "source_reconciliation": {
+      "primary_body_source": "",
+      "primary_source_reason": "audio and document disagree on speaker order",
+      "cross_check_source": "",
+      "coverage_findings": ["document omits one speaker turn"],
+      "speaker_order_findings": ["audio and document order conflict"],
+      "omission_findings": [],
+      "conflicts": ["primary body source cannot be selected safely"],
+      "manual_review_required": true
+    },
+    "entity_verification_report": {
+      "items": ["示例客户"],
+      "local_candidate_paths": ["query_symbol_candidates.py"],
+      "external_evidence_paths": [],
+      "confirmed_item_evidence_paths": {},
+      "confirmed_items": [],
+      "unresolved_items": ["示例客户"],
+      "conflicts": []
+    },
+    "doubtful_items": [
+      {
+        "原始表述": "示例客户",
+        "存疑类型": "其他业务事实",
+        "当前判断": "请求人工确认",
+        "候选项": "",
+        "是否需要 sidecar": true,
+        "上下文依据": "音频和文稿对客户表述不一致",
+        "检索/证据路径": "外部证据不可用",
+        "最终处理": "请求人工确认后再写入或标存疑"
+      }
+    ],
+    "fidelity_review": {
+      "paragraphs_reviewed": 1,
+      "source_mapping_failures": [],
+      "summary_compression_findings": [],
+      "pronoun_rewrite_findings": [],
+      "omission_findings": [],
+      "recommended_revisions": []
+    },
+    "export_manifest": {
+      "markdown_path": "synthetic.md",
+      "markdown_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "verification_sidecar_path": "synthetic.verification.json",
+      "validators_run": [
+        {"name": "validate_utf8_text.py", "ok": true},
+        {"name": "validate_meeting_minutes_contract.py", "ok": false}
+      ],
+      "regression_result": {"name": "run_meeting_minutes_regression.py", "case_count": 1, "ok": false},
+      "export_status": "blocked",
+      "known_unverified_parts": ["示例客户"],
+      "main_actions_verified": false
+    }
+  }
+}

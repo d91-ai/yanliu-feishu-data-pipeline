@@ -1,0 +1,14 @@
+{
+  "artifact_type": "entity_verification_report",
+  "artifact": {
+    "items": ["示例公司"],
+    "local_candidate_paths": [],
+    "external_evidence_paths": ["https://127.0.0.1/private?token=secret"],
+    "confirmed_item_evidence_paths": {
+      "示例公司": ["https://127.0.0.1/private?token=secret"]
+    },
+    "confirmed_items": ["示例公司"],
+    "unresolved_items": [],
+    "conflicts": []
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "contract_version": 1,
+  "metadata_schema_version": 1,
+  "meeting_uid_pattern": "^mtg_[0-9a-f]{32}$",
+  "sha256_pattern": "^[0-9a-f]{64}$",
+  "minimum_data_version": 1,
+  "review_statuses": [
+    "未审核",
+    "已审核",
+    "需重审"
+  ],
+  "quality_statuses": [
+    "unreviewed",
+    "reviewed"
+  ],
+  "upload_required_fields": [
+    "meeting_date",
+    "meeting_series",
+    "meeting_type"
+  ],
+  "filename": {
+    "separator": " - ",
+    "version_prefix": "v",
+    "maximum_series_length": 40,
+    "maximum_filename_length": 120
+  },
+  "artifacts": {
+    "meeting_minutes": {
+      "display_name": "会议纪要",
+      "extensions": [
+        "md"
+      ],
+      "generation_enabled": true
+    },
+    "industry_market_viewpoints": {
+      "display_name": "行业与市场观点",
+      "extensions": [
+        "md",
+        "json"
+      ],
+      "generation_enabled": true
+    },
+    "structured_viewpoints": {
+      "display_name": "标的观点",
+      "extensions": [
+        "md",
+        "json"
+      ],
+      "generation_enabled": true
+    },
+    "sanitized_meeting_minutes": {
+      "display_name": "脱敏会议纪要",
+      "extensions": [
+        "md"
+      ],
+      "generation_enabled": false
+    }
+  },
+  "business_fields": [
+    {"name": "会议ID", "type": "text", "required": true},
+    {"name": "会议名", "type": "text", "required": true},
+    {"name": "会议日期", "type": "date", "required": true},
+    {"name": "会议系列", "type": "single_select", "required": true},
+    {"name": "会议类型", "type": "single_select", "required": true},
+    {"name": "数据版本", "type": "integer", "required": true},
+    {"name": "会议纪要MD", "type": "url", "required": true},
+    {"name": "会议纪要审核前MD", "type": "url", "required": true},
+    {"name": "会议纪要审核后MD", "type": "url", "required": false},
+    {"name": "源纪要审核", "type": "single_select", "required": true},
+    {"name": "行业与市场观点MD", "type": "url", "required": false},
+    {"name": "行业与市场观点审核前MD", "type": "url", "required": false},
+    {"name": "行业与市场观点审核后MD", "type": "url", "required": false},
+    {"name": "行业与市场观点JSON", "type": "url", "required": false},
+    {"name": "行业与市场观点审核", "type": "single_select", "required": true},
+    {"name": "标的观点MD", "type": "url", "required": false},
+    {"name": "标的观点审核前MD", "type": "url", "required": false},
+    {"name": "标的观点审核后MD", "type": "url", "required": false},
+    {"name": "标的观点JSON", "type": "url", "required": false},
+    {"name": "标的观点审核", "type": "single_select", "required": true},
+    {"name": "脱敏会议纪要MD", "type": "url", "required": false}
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "run_id": "<bound-at-runtime>",
+  "task_id": "<bound-at-runtime>",
+  "dispatch_phase": "pre_draft",
+  "artifact_owner": "Source Reconciler",
+  "task_artifact_set": [
+    "source_reconciliation"
+  ],
+  "ingested_split": true,
+  "artifact_type": "source_reconciliation",
+  "artifact": {
+    "primary_body_source": "aligned_transcript",
+    "primary_source_reason": "synthetic fixture",
+    "cross_check_source": "provided_document",
+    "coverage_findings": [],
+    "speaker_order_findings": [],
+    "omission_findings": [],
+    "conflicts": [],
+    "manual_review_required": false
+  }
+}

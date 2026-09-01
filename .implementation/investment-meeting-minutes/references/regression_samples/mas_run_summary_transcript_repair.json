@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "ok": true,
+  "task_dir": "/tmp/mas-plan-synthetic",
+  "next_action": {
+    "type": "repair_before_continue",
+    "phase": "pre_draft",
+    "main_actions": ["repair_transcript_before_draft"]
+  },
+  "errors": [],
+  "warnings": []
+}

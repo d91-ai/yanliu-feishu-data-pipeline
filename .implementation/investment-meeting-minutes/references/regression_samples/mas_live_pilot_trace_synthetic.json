@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "execution_mode": "codex_subagent_synthetic_pilot",
+  "materials": "synthetic_audio_plus_document",
+  "subagent_task_count": 5,
+  "repair_loop_observed": true,
+  "phases": [
+    {
+      "phase": "pre_draft_initial",
+      "collector_ok": false,
+      "next_action_type": "repair_invalid_or_duplicate_artifacts",
+      "next_phase": "",
+      "errors": [
+        "source_reconciliation.manual_review_required 必须是 boolean"
+      ]
+    },
+    {
+      "phase": "pre_draft_repaired",
+      "collector_ok": true,
+      "next_action_type": "collect_or_dispatch_phase_artifacts",
+      "next_phase": "draft_review",
+      "errors": []
+    },
+    {
+      "phase": "draft_review",
+      "collector_ok": true,
+      "next_action_type": "collect_or_dispatch_phase_artifacts",
+      "next_phase": "final_verification",
+      "errors": []
+    },
+    {
+      "phase": "final_verification",
+      "collector_ok": true,
+      "next_action_type": "ask_user_for_narrow_confirmation",
+      "next_phase": "complete",
+      "errors": []
+    }
+  ],
+  "final_decision": "request_user",
+  "final_main_actions": [
+    "ask_user_to_confirm_primary_body_source",
+    "resolve_or_record_source_conflicts",
+    "mark_unresolved_business_items_as_doubtful",
+    "keep_conflicting_entities_doubtful",
+    "derive_final_doubtful_table_from_doubtful_items",
+    "revise_draft_before_final_validation",
+    "keep_unverified_parts_doubtful_or_unconfirmed"
+  ],
+  "boundaries": {
+    "no_real_meeting_materials": true,
+    "subagents_process_only": true,
+    "final_markdown_owned_by_main_workflow": true,
+    "no_active_install_sync": true,
+    "no_commit_or_push": true
+  },
+  "lessons": [
+    "Live subagents can return schema-invalid JSON even when the prompt says JSON-only; collector validation must run after every phase.",
+    "The main workflow should repair or re-dispatch invalid specialist artifacts before moving to later phases.",
+    "Valid complete artifacts do not imply automatic delivery; unresolved source conflicts and known unverified parts must produce a narrow user-confirmation action."
+  ]
+}

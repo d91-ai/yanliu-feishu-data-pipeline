@@ -1,0 +1,28 @@
+[
+  {
+    "source": "paraformer_segment",
+    "precision": "segment",
+    "start": "00:01.000",
+    "end": "00:13.000",
+    "start_ms": 1000,
+    "end_ms": 13000,
+    "duration_ms": 12000,
+    "chunk_index": 0,
+    "text": "这是一条只用于内部复核的 Paraformer segment。",
+    "speaker": "",
+    "index": 0
+  },
+  {
+    "source": "sensevoice_vad_segment",
+    "precision": "segment",
+    "start": "00:20.000",
+    "end": "00:35.000",
+    "start_ms": 20000,
+    "end_ms": 35000,
+    "duration_ms": 15000,
+    "chunk_index": 1,
+    "text": "这是一条未被选中用于存疑的过长 VAD segment。",
+    "speaker": "",
+    "index": 1
+  }
+]

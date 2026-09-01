@@ -1,0 +1,10 @@
+{
+  "artifact_type": "source_manifest",
+  "artifact": {
+    "source_mode": "document_only",
+    "materials": [],
+    "archive_allowed": false,
+    "archive_status": "not_started",
+    "skipped_reason": "archive_not_confirmed_by_main_workflow"
+  }
+}

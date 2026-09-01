@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["semantic_rows"],
+  "properties": {
+    "semantic_rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "meeting_date",
+          "viewpoint_date",
+          "target_name",
+          "stock_code",
+          "market",
+          "sector_name",
+          "presenter",
+          "presenter_normalized",
+          "position_context",
+          "direction",
+          "conviction",
+          "time_horizon",
+          "core_viewpoint",
+          "evidence",
+          "rationale",
+          "non_reviewable_reason"
+        ],
+        "properties": {
+          "meeting_date": {"type": "string"},
+          "viewpoint_date": {"type": "string"},
+          "target_name": {"type": "string"},
+          "stock_code": {"type": "string"},
+          "market": {"type": "string", "enum": ["A股", "港股", "美股", "其他", "待确认"]},
+          "sector_name": {"type": "string"},
+          "presenter": {"type": "string"},
+          "presenter_normalized": {"type": "string"},
+          "position_context": {
+            "type": "string",
+            "pattern": "^(持有(?:（[^（）；]+）)?(?:；(?:计划增持|计划减持|计划卖出|暂不操作))?|未持有(?:；(?:计划买入|暂不操作))?|信息不足(?:；(?:计划买入|暂不操作))?)$"
+          },
+          "direction": {"type": "string", "enum": ["看多", "看空", "中性", "信息不足"]},
+          "conviction": {"type": "string", "enum": ["高", "中", "低", "未说明"]},
+          "time_horizon": {"type": "string", "enum": ["短期", "中期", "长期", "未说明"]},
+          "core_viewpoint": {"type": "string"},
+          "evidence": {"type": "string"},
+          "rationale": {"type": "string"},
+          "non_reviewable_reason": {"type": "string"}
+        }
+      }
+    }
+  }
+}

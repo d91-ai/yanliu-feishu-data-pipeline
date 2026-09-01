@@ -1,0 +1,26 @@
+services:
+  feishu-structured-generate:
+    container_name: feishu-structured-generate
+    build:
+      context: .
+    env_file:
+      - "${FEISHU_STRUCTURED_ENV_FILE:-.env}"
+    environment:
+      FEISHU_STRUCTURED_HTTP_HOST: 0.0.0.0
+    command: ["python", "structured_generate_service.py", "serve", "--apply"]
+    ports:
+      - "127.0.0.1:8790:8790"
+    healthcheck:
+      test: ["CMD", "python", "structured_generate_service.py", "doctor"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    volumes:
+      - ./data:/app/data
+      - ./data/semantic-jobs:/app/semantic-jobs
+      - "${STRUCTURED_SKILL_HOST_DIR:?set STRUCTURED_SKILL_HOST_DIR}:/skills/meeting-minutes-structured-table:ro"
+      - "${STRUCTURED_OUTPUT_HOST_DIR:?set STRUCTURED_OUTPUT_HOST_DIR}:/app/structured_outputs"
+      - "${STRUCTURED_ARCHIVE_ENV_HOST_PATH:-../feishu-drive-to-bitable/.env.structured}:/run/secrets/structured-archive.env:ro"
+    restart: unless-stopped
+    init: true

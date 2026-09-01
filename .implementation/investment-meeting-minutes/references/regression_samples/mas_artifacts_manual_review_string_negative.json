@@ -1,0 +1,14 @@
+{
+  "artifacts": {
+    "source_reconciliation": {
+      "primary_body_source": "audio",
+      "primary_source_reason": "synthetic fixture",
+      "cross_check_source": "document",
+      "coverage_findings": [],
+      "speaker_order_findings": [],
+      "omission_findings": [],
+      "conflicts": [],
+      "manual_review_required": "true"
+    }
+  }
+}

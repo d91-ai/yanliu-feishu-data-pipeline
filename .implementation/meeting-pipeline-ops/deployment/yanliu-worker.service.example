@@ -1,0 +1,15 @@
+[Unit]
+Description=Yanliu meeting pipeline Worker
+After=network-online.target yanliu-router.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=DEPLOY_USER
+WorkingDirectory=/ABSOLUTE_REPO_PATH/.implementation/meeting-pipeline-worker
+ExecStart=/usr/bin/python3 -B unified_worker_service.py --env-file /ABSOLUTE_RUNTIME_PATH/worker/.env.worker.enabled serve --apply
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

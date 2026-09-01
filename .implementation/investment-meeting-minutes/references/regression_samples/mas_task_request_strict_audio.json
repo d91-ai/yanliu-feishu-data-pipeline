@@ -1,0 +1,18 @@
+{
+  "run_profile": "strict_audio",
+  "source_mode": "audio_only",
+  "meeting_type": "多人复盘会",
+  "risk_flags": [
+    "long_audio",
+    "noisy_audio",
+    "unclear_speaker_boundaries",
+    "timestamp_alignment",
+    "high_risk_facts",
+    "mixed_targets",
+    "omission_risk"
+  ],
+  "materials": [
+    "synthetic_meeting.wav",
+    "timestamp_index.json"
+  ]
+}

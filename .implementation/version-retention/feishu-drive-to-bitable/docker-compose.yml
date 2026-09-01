@@ -1,0 +1,15 @@
+services:
+  feishu-drive-to-bitable-router:
+    container_name: feishu-drive-to-bitable-router
+    build:
+      context: .
+    env_file:
+      - "${FEISHU_ROUTER_ENV_FILE:-.env.router}"
+    command: ["python", "feishu_drive_to_bitable.py", "run-router", "--apply"]
+    volumes:
+      - ./data:/app/data
+      - "${FEISHU_MEETING_ROUTE_ENV_FILE:-.env.meeting-minutes}:/app/.env.meeting-minutes:ro"
+      - "${FEISHU_MEETING_FIELD_BINDINGS_FILE:-.field-bindings.meeting-minutes.json}:/app/.field-bindings.meeting-minutes.json:ro"
+      - "${MEETING_MINUTES_SKILL_HOST_DIR:?set MEETING_MINUTES_SKILL_HOST_DIR}:/skills/investment-meeting-minutes:ro"
+    restart: unless-stopped
+    init: true

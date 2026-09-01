@@ -1,0 +1,33 @@
+services:
+  feishu-minute-sanitize:
+    build: .
+    container_name: feishu-minute-sanitize
+    restart: unless-stopped
+    env_file:
+      - "${FEISHU_SANITIZE_ENV_FILE:-.env}"
+    command: ["python", "/app/minute_sanitize_service.py", "serve", "--apply"]
+    environment:
+      FEISHU_APP_SECRET_FILE: /run/secrets/feishu_app_secret
+      FEISHU_SANITIZE_HTTP_TOKEN_FILE: /run/secrets/http_token
+      FEISHU_SANITIZE_HTTP_HOST: 0.0.0.0
+      SANITIZE_STATE_DIR: /app/data/state
+    ports:
+      - "127.0.0.1:${FEISHU_SANITIZE_HTTP_PORT:-8791}:8791"
+    volumes:
+      - "${SANITIZE_SKILL_HOST_DIR:?set SANITIZE_SKILL_HOST_DIR}:/skills/meeting-minutes-sanitizer:ro"
+      - "${FEISHU_APP_SECRET_HOST_FILE:?set FEISHU_APP_SECRET_HOST_FILE}:/run/secrets/feishu_app_secret:ro"
+      - "${FEISHU_SANITIZE_HTTP_TOKEN_HOST_FILE:?set FEISHU_SANITIZE_HTTP_TOKEN_HOST_FILE}:/run/secrets/http_token:ro"
+      - sanitize-state:/app/data/state
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "python", "-c", "import json,urllib.request; d=json.load(urllib.request.urlopen('http://127.0.0.1:8791/healthz')); assert d['live']"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  sanitize-state:

@@ -1,0 +1,17 @@
+{
+  "records": [
+    {
+      "原始表述": "OCS",
+      "存疑类型": "行业术语",
+      "当前判断": "待人工确认",
+      "候选项": "optical circuit switch",
+      "是否需要 sidecar": true,
+      "上下文依据": "会议上下文将 OCS 与光、CPU、上游材料并列放在北美算力链条中，语义上指向光互连或光交换相关术语。",
+      "检索/证据路径": [
+        "本地术语候选：OCS 可作为 optical circuit switch 缩写",
+        "外部资料路径：公开光通信/数据中心网络资料中存在 optical circuit switch 用法；仍需人工结合原音频确认发音"
+      ],
+      "最终处理": "正文保留 **OCS** 并写入存疑表，候选项记录为 optical circuit switch，人工确认列留空。"
+    }
+  ]
+}

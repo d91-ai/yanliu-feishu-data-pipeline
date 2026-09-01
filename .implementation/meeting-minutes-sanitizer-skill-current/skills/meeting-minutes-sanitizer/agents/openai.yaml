@@ -1,0 +1,4 @@
+interface:
+  display_name: "Meeting Minutes Sanitizer"
+  short_description: "中文投研会议纪要有限规则脱敏并输出单一Markdown"
+  default_prompt: "Use $meeting-minutes-sanitizer only for full sanitization of one reviewed Chinese investment meeting note. Emit exactly one Markdown file with standalone 【X】 topic markers, omit an empty pending section, preserve real uncertainty under ## 三、存疑与待确认, fail closed on unresolved identity or evidence risks, and require human review."

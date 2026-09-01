@@ -1,0 +1,15 @@
+[Unit]
+Description=Yanliu missed attachment ingress reconciler
+After=network-online.target yanliu-router.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=DEPLOY_USER
+WorkingDirectory=/ABSOLUTE_REPO_PATH/.implementation/meeting-pipeline-ops
+ExecStart=/usr/bin/python3 -B reconcile_missed_ingress.py --router-env /ABSOLUTE_RUNTIME_PATH/router/.env.router --route-env /ABSOLUTE_RUNTIME_PATH/router/.env.meeting-minutes --lookback-hours 48 --loop-seconds 300 --initial-delay-seconds 15 --apply
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

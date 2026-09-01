@@ -1,0 +1,13 @@
+{
+  "artifact_type": "source_reconciliation",
+  "artifact": {
+    "primary_body_source": "aligned_transcript",
+    "primary_source_reason": "audio transcript preserves speaker order and uncertainty qualifiers",
+    "cross_check_source": "provided_document",
+    "coverage_findings": [],
+    "speaker_order_findings": [],
+    "omission_findings": [],
+    "conflicts": [],
+    "manual_review_required": false
+  }
+}

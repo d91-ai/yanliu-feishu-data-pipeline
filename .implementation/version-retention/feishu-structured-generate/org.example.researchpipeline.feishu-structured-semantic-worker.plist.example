@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.example.feishu-structured-semantic-worker</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/python3</string>
+    <string>/absolute/path/to/feishu-structured-generate/semantic_worker.py</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>/absolute/path/to/feishu-structured-generate</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    <key>STRUCTURED_SEMANTIC_JOB_DIR_HOST</key>
+    <string>/absolute/path/to/feishu-structured-generate/data/semantic-jobs</string>
+    <key>STRUCTURED_TABLE_SKILL_SCRIPT_HOST</key>
+    <string>/absolute/path/to/meeting-minutes-structured-table/scripts/generate_table.py</string>
+    <key>STRUCTURED_SEMANTIC_LOCK_PATH</key>
+    <string>/absolute/path/to/feishu-structured-generate/data/semantic_worker.lock</string>
+    <key>STRUCTURED_WORKER_POLL_SECONDS</key>
+    <string>15</string>
+    <key>STRUCTURED_WORKER_TIMEOUT_SECONDS</key>
+    <string>900</string>
+    <key>STRUCTURED_SEMANTIC_MODEL_VERSION</key>
+    <string>REPLACE_WITH_EXACT_CODEX_MODEL_ID</string>
+    <key>STRUCTURED_SEMANTIC_JOB_DIR_CONTAINER</key>
+    <string>/app/semantic-jobs</string>
+  </dict>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <key>ThrottleInterval</key>
+  <integer>10</integer>
+  <key>StandardOutPath</key>
+  <string>/absolute/path/to/feishu-structured-generate/data/semantic_worker.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>/absolute/path/to/feishu-structured-generate/data/semantic_worker.err.log</string>
+</dict>
+</plist>

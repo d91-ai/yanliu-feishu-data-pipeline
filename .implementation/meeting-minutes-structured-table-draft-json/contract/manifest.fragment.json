@@ -1,0 +1,11 @@
+{
+  "candidate_contract_version": 1,
+  "requires_skill_contract_version": 4,
+  "requires_skill_schema_version": 7,
+  "requires_pipeline_contract_version": 1,
+  "proposed_entrypoint": {
+    "generate_draft_json": "scripts/generate_draft_json.py"
+  },
+  "artifact_type": "structured_viewpoints",
+  "quality_status": "unreviewed"
+}

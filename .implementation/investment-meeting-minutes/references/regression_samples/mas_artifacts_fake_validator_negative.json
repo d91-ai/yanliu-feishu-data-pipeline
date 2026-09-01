@@ -1,0 +1,17 @@
+{
+  "artifact_type": "export_manifest",
+  "artifact": {
+    "markdown_path": "synthetic.md",
+    "markdown_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "verification_sidecar_path": "",
+    "validators_run": [
+      {"name": "validate_utf8_text.py", "ok": true},
+      {"name": "validate_meeting_minutes_contract.py", "ok": true},
+      {"name": "trust_me_validator.py", "ok": true}
+    ],
+    "regression_result": {"name": "run_meeting_minutes_regression.py", "case_count": 1, "ok": true},
+    "export_status": "passed",
+    "known_unverified_parts": [],
+    "main_actions_verified": true
+  }
+}

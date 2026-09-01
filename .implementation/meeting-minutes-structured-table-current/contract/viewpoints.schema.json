@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["metadata", "rows"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "meeting_id",
+        "structured_markdown_sha256",
+        "schema_version",
+        "security_master_version"
+      ],
+      "properties": {
+        "meeting_id": {"type": "string", "minLength": 1},
+        "structured_markdown_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "schema_version": {"const": 9},
+        "security_master_version": {
+          "anyOf": [
+            {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+            {"const": "unavailable"}
+          ]
+        }
+      }
+    },
+    "rows": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/viewpoint"}
+    }
+  },
+  "$defs": {
+    "condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "types"],
+      "properties": {
+        "text": {"type": "string", "minLength": 1},
+        "types": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": [
+              "未分类",
+              "价格/估值",
+              "业绩/基本面",
+              "产业供需/价格",
+              "产品/技术",
+              "政策/事件",
+              "市场/流动性",
+              "资金/筹码",
+              "交易/仓位"
+            ]
+          }
+        }
+      }
+    },
+    "source_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "locator"],
+      "properties": {
+        "text": {"type": "string", "minLength": 1},
+        "locator": {"type": "string", "minLength": 1}
+      }
+    },
+    "viewpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "viewpoint_id",
+        "meeting_date",
+        "viewpoint_date",
+        "target_key",
+        "target_name",
+        "stock_code",
+        "market",
+        "presenter",
+        "presenter_normalized",
+        "direction",
+        "time_horizon",
+        "position_context",
+        "conditions",
+        "source_evidence"
+      ],
+      "properties": {
+        "viewpoint_id": {"type": "string", "pattern": "^vp-[0-9a-f]{32}$"},
+        "meeting_date": {"type": "string", "minLength": 1},
+        "viewpoint_date": {"type": "string", "minLength": 1},
+        "target_key": {"type": "string", "minLength": 1},
+        "target_name": {"type": "string", "minLength": 1},
+        "stock_code": {"type": "string", "minLength": 1},
+        "market": {"type": "string", "enum": ["A股", "港股", "美股", "其他"]},
+        "presenter": {"type": "string", "minLength": 1},
+        "presenter_normalized": {"type": "string", "minLength": 1},
+        "direction": {
+          "type": "string",
+          "enum": ["看多", "看空", "关注", "中性", "信息不足"]
+        },
+        "time_horizon": {
+          "type": "string",
+          "enum": ["短期", "中期", "长期", "未说明"]
+        },
+        "position_context": {"type": "string", "minLength": 1},
+        "conditions": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/condition"}
+        },
+        "source_evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/source_evidence"}
+        }
+      }
+    }
+  }
+}

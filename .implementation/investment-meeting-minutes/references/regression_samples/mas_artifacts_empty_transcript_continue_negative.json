@@ -1,0 +1,12 @@
+{
+  "artifact_type": "transcript_audit",
+  "artifact": {
+    "asr_primary": "",
+    "asr_auxiliary": "",
+    "quality_flags": [],
+    "speaker_boundary_findings": [],
+    "timestamp_index_status": "",
+    "conflicts": [],
+    "recommended_action": "continue"
+  }
+}

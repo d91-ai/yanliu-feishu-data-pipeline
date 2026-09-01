@@ -1,0 +1,12 @@
+{
+  "artifact_type": "transcript_audit",
+  "artifact": {
+    "asr_primary": "SenseVoiceSmall",
+    "asr_auxiliary": "Paraformer-Large",
+    "quality_flags": ["severe_asr_loss"],
+    "speaker_boundary_findings": ["speaker boundaries unusable"],
+    "timestamp_index_status": "unreliable",
+    "conflicts": ["primary and auxiliary transcripts diverge"],
+    "recommended_action": "repair_transcript"
+  }
+}

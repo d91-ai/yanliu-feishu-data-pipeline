@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/meeting-minutes-industry-market-viewpoints/artifact-v3.json",
+  "title": "Industry and market viewpoints artifact",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "metadata",
+    "items"
+  ],
+  "properties": {
+    "metadata": {
+      "$ref": "#/$defs/metadata"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/item"
+      }
+    }
+  },
+  "$defs": {
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "meeting_uid",
+        "meeting_date",
+        "meeting_series",
+        "meeting_type",
+        "artifact_type",
+        "data_version",
+        "quality_status",
+        "source_review_status",
+        "artifact_review_status",
+        "source_md_sha256",
+        "review_md_sha256",
+        "item_count",
+        "generated_at"
+      ],
+      "properties": {
+        "schema_version": {"const": 1},
+        "meeting_uid": {"type": "string", "pattern": "^mtg_[0-9a-f]{32}$"},
+        "meeting_date": {"type": "string", "format": "date"},
+        "meeting_series": {"type": "string", "minLength": 1, "maxLength": 40},
+        "meeting_type": {"type": "string", "minLength": 1, "maxLength": 40},
+        "artifact_type": {"const": "industry_market_viewpoints"},
+        "data_version": {"type": "integer", "minimum": 1},
+        "quality_status": {"enum": ["unreviewed", "reviewed"]},
+        "source_review_status": {"enum": ["未审核", "已审核", "需重审"]},
+        "artifact_review_status": {"enum": ["未审核", "已审核", "需重审"]},
+        "source_md_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "review_md_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "item_count": {"type": "integer", "minimum": 0},
+        "generated_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "viewpoint_id",
+        "meeting_date",
+        "view_scope",
+        "subject",
+        "presenter",
+        "view_type",
+        "viewpoint_text"
+      ],
+      "properties": {
+        "viewpoint_id": {"type": "string", "pattern": "^ivp_[0-9a-f]{32}$"},
+        "meeting_date": {"type": "string", "format": "date"},
+        "view_scope": {"enum": ["market", "industry"]},
+        "subject": {"type": "string", "minLength": 1},
+        "presenter": {"type": "string", "minLength": 1},
+        "view_type": {"type": "string", "enum": ["看多", "看空", "中性"]},
+        "viewpoint_text": {"type": "string", "minLength": 1, "maxLength": 300}
+      }
+    }
+  }
+}

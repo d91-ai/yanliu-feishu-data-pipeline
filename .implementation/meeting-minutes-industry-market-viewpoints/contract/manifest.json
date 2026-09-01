@@ -1,0 +1,40 @@
+{
+  "contract_version": 3,
+  "schema_version": 1,
+  "pipeline_contract_version": 1,
+  "semantic_prompt": "semantic_prompt.md",
+  "claim_units_schema": "claim_units.schema.json",
+  "provider_claim_units_schema": "claim_units.provider.schema.json",
+  "artifact_schema": "artifact.schema.json",
+  "entrypoints": {
+    "script": "scripts/generate_viewpoints.py",
+    "source_fragments_command": "source-fragments",
+    "generate_command": "generate",
+    "export_reviewed_command": "export-reviewed",
+    "validate_command": "validate"
+  },
+  "review_markdown": {
+    "title": "行业与市场观点",
+    "sections": {
+      "market": "市场观点",
+      "industry": "行业观点"
+    },
+    "fields": [
+      "日期",
+      "主题",
+      "发言人",
+      "观点类型",
+      "观点"
+    ],
+    "machine_metadata_allowed": false
+  },
+  "runtime_paths": [
+    "SKILL.md",
+    "agents/openai.yaml",
+    "contract",
+    "references/schema.md",
+    "references/quality_rules.md",
+    "industry_market_viewpoints",
+    "scripts/generate_viewpoints.py"
+  ]
+}

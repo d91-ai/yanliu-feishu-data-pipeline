@@ -1,0 +1,17 @@
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+*.log
+*.pid
+data/
+backups/
+semantic-jobs/
+structured_outputs/
+tests/
+test_*.py
+README.md
+org.example.researchpipeline.*.plist*

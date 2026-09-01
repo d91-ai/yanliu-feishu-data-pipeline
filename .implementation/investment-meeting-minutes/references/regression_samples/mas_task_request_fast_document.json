@@ -1,0 +1,9 @@
+{
+  "run_profile": "fast_document",
+  "source_mode": "document_only",
+  "meeting_type": "公司交流",
+  "risk_flags": [],
+  "materials": [
+    "clean_company_call.md"
+  ]
+}

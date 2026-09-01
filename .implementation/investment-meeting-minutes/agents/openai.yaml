@@ -1,0 +1,4 @@
+interface:
+  display_name: "投资会议纪要整理"
+  short_description: "中文投资会议录音/文本转纪要，含标的校对与Obsidian导出"
+  default_prompt: "请用投资会议纪要整理技能处理输入；除非用户明确要求只读、不要动文件、不要存档、测试用不存档或先分析可行性，否则先按日期归档原始文件，输出发言整理；如存在真实存疑，再输出存疑与待确认，并按 archive/export contract 导出最终本地 Markdown（配置指向 Obsidian 目录时才称为 Obsidian 导出）；多人复盘会按“日期 - 会议系列”命名，会议系列从原始文件名已知列表匹配，无唯一结果时请用户确认；公司交流按“日期 - 公司名 - 上市公司交流”命名，专家交流按“日期 - 主题 - 专家交流”命名；verification 仅作为内部审计 sidecar，不作为正式交付物。高风险任务按 MAS 编排契约生成 transcript_audit、source_reconciliation、entity_verification_report、target_attribution_review、fidelity_review 或 export_manifest 等结构化过程产物；每个 subagent 返回必须匹配当前 run、task、phase、owner 和允许的 artifact 集合，draft review 触发的主流程修改必须先绑定 Markdown 哈希并重新执行 final verification；这些产物只用于主流程裁决、自动修正、标存疑或请求人工确认，不直接写终稿。外部核验只发送候选实体、代码、术语和必要公开事实关键词，不发送原始会议长段、发言人身份、私有链接或未公开客户/订单上下文。发言整理必须按每个人的真实发言顺序整理原文，只允许删除纯口水词、明显ASR噪音、无意义重复和重复起手式；必须保留人称、说话方视角、判断条件、数字、时间、仓位动作和不确定表达，不要改成第三人称转述，不要压缩成摘要或内容总结。多人复盘会中，标的行只写当前段落明确看好的证券标的和代码，无明确看好标的时不输出空标的行。"

@@ -1,0 +1,84 @@
+{
+  "artifacts": {
+    "source_manifest": {
+      "source_mode": "audio_plus_document",
+      "materials": [
+        {"kind": "audio", "name": "synthetic_meeting.wav"},
+        {"kind": "document", "name": "provided_transcript.md"}
+      ],
+      "archive_allowed": true,
+      "archive_status": "skipped_for_fixture",
+      "skipped_reason": "synthetic_regression"
+    },
+    "transcript_audit": {
+      "asr_primary": "SenseVoiceSmall",
+      "asr_auxiliary": "Paraformer-Large",
+      "quality_flags": [],
+      "speaker_boundary_findings": [],
+      "timestamp_index_status": "reliable_short_vad_segment",
+      "conflicts": [],
+      "recommended_action": "continue"
+    },
+    "source_reconciliation": {
+      "primary_body_source": "aligned_transcript",
+      "primary_source_reason": "audio has better speaker order and timestamp evidence",
+      "cross_check_source": "document",
+      "coverage_findings": [],
+      "speaker_order_findings": [],
+      "omission_findings": [],
+      "conflicts": [],
+      "manual_review_required": false
+    },
+    "entity_verification_report": {
+      "items": ["某某科技"],
+      "local_candidate_paths": ["query_symbol_candidates.py"],
+      "external_evidence_paths": ["exchange_disclosure"],
+      "confirmed_item_evidence_paths": {},
+      "confirmed_items": [],
+      "unresolved_items": ["某某科技"],
+      "conflicts": []
+    },
+    "doubtful_items": [
+      {
+        "原始表述": "某某科技",
+        "存疑类型": "公司或证券标的",
+        "当前判断": "待人工确认",
+        "候选项": "候选科技(999999.SZ)",
+        "是否需要 sidecar": true,
+        "上下文依据": "发言人1在科技板块段落中提及",
+        "检索/证据路径": "本地候选加交易所披露仍无法唯一确认",
+        "最终处理": "正文加粗标注并入存疑表"
+      }
+    ],
+    "target_attribution_review": {
+      "segments_reviewed": 1,
+      "wrong_grouping": [],
+      "missing_positive_targets": [],
+      "incidental_targets_in_heading": [],
+      "negative_targets_in_heading": [],
+      "non_source_companies": [],
+      "recommended_revisions": []
+    },
+    "fidelity_review": {
+      "paragraphs_reviewed": 2,
+      "source_mapping_failures": [],
+      "summary_compression_findings": [],
+      "pronoun_rewrite_findings": [],
+      "omission_findings": [],
+      "recommended_revisions": []
+    },
+    "export_manifest": {
+      "markdown_path": "synthetic.md",
+      "markdown_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "verification_sidecar_path": "synthetic.verification.json",
+      "validators_run": [
+        {"name": "validate_utf8_text.py", "ok": true},
+        {"name": "validate_meeting_minutes_contract.py", "ok": true}
+      ],
+      "regression_result": {"name": "run_meeting_minutes_regression.py", "case_count": 1, "ok": true},
+      "export_status": "passed",
+      "known_unverified_parts": ["某某科技"],
+      "main_actions_verified": true
+    }
+  }
+}

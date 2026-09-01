@@ -1,0 +1,16 @@
+$ErrorActionPreference = 'Stop'
+
+# Replace this value with the WSL distribution that contains the deployment.
+$DistroName = 'YOUR_WSL_DISTRO'
+
+# Starting an enabled systemd WSL distribution starts all three enabled services.
+& wsl.exe -d $DistroName --exec /bin/true
+if ($LASTEXITCODE -ne 0) {
+    throw 'Failed to start the WSL distribution.'
+}
+
+& wsl.exe -d $DistroName -- bash -lc `
+    'systemctl is-active --quiet yanliu-router.service yanliu-worker.service yanliu-reconciler.service'
+if ($LASTEXITCODE -ne 0) {
+    throw 'One or more Yanliu services are not active.'
+}

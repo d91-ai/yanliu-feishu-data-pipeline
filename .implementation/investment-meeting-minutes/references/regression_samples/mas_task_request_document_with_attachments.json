@@ -1,0 +1,22 @@
+{
+  "run_profile": "standard",
+  "source_mode": "document_only",
+  "meeting_type": "多人复盘会",
+  "risk_flags": [
+    "source_conflict"
+  ],
+  "materials": [
+    {
+      "kind": "document",
+      "name": "meeting.txt"
+    },
+    {
+      "kind": "metadata",
+      "name": "run.json"
+    },
+    {
+      "kind": "document",
+      "name": "slides.pdf"
+    }
+  ]
+}

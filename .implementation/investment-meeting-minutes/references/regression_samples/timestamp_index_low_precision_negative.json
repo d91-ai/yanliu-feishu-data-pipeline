@@ -1,0 +1,15 @@
+[
+  {
+    "start": "00:03:00",
+    "end": "00:04:00",
+    "start_ms": 180000,
+    "end_ms": 240000,
+    "chunk_index": 3,
+    "text": "这一分钟级 chunk 里提到了 OCS，但没有句级或短句级 anchor。",
+    "speaker": "Speaker 1",
+    "source": "sensevoice_chunk",
+    "precision": "chunk",
+    "index": 0,
+    "used_for_doubtful": true
+  }
+]

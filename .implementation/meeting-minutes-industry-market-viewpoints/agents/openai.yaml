@@ -1,0 +1,4 @@
+interface:
+  display_name: "行业与市场观点"
+  short_description: "从会议纪要提取适配数据看板的行业与市场观点"
+  default_prompt: "Use $meeting-minutes-industry-market-viewpoints to extract concise dashboard-ready industry and market viewpoints from this meeting note."

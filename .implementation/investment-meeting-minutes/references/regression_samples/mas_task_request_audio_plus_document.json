@@ -1,0 +1,14 @@
+{
+  "run_profile": "standard",
+  "source_mode": "audio_plus_document",
+  "meeting_type": "多人复盘会",
+  "risk_flags": [
+    "primary_source_uncertain",
+    "source_conflict",
+    "high_risk_facts"
+  ],
+  "materials": [
+    "synthetic_meeting.wav",
+    "provided_transcript.md"
+  ]
+}

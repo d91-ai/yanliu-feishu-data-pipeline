@@ -1,0 +1,17 @@
+services:
+  feishu-structured-generate:
+    profiles: ["legacy-disabled"]
+    container_name: feishu-structured-generate-legacy-disabled
+    build:
+      context: .
+    env_file:
+      - "${FEISHU_LEGACY_STRUCTURED_ENV_FILE:-.env}"
+    command: ["python", "structured_generate_service.py", "serve"]
+    environment:
+      FEISHU_STRUCTURED_HTTP_HOST: 0.0.0.0
+    volumes:
+      - ./data:/app/data
+      - "${LEGACY_STRUCTURED_SKILL_HOST_DIR:?legacy profile requires LEGACY_STRUCTURED_SKILL_HOST_DIR}:/skills/meeting-minutes-structured-table:ro"
+      - "${LEGACY_STRUCTURED_OUTPUT_HOST_DIR:?legacy profile requires LEGACY_STRUCTURED_OUTPUT_HOST_DIR}:/app/structured_outputs"
+    restart: "no"
+    init: true

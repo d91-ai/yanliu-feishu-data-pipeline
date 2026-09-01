@@ -1,0 +1,13 @@
+{
+  "artifact_type": "source_reconciliation",
+  "artifact": {
+    "primary_body_source": "",
+    "primary_source_reason": "",
+    "cross_check_source": "document",
+    "coverage_findings": [],
+    "speaker_order_findings": [],
+    "omission_findings": [],
+    "conflicts": [],
+    "manual_review_required": false
+  }
+}

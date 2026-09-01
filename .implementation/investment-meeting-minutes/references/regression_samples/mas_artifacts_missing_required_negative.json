@@ -1,0 +1,13 @@
+{
+  "artifacts": {
+    "source_reconciliation": {
+      "primary_source_reason": "audio has better speaker order and timestamp evidence",
+      "cross_check_source": "document",
+      "coverage_findings": [],
+      "speaker_order_findings": [],
+      "omission_findings": [],
+      "conflicts": [],
+      "manual_review_required": false
+    }
+  }
+}
